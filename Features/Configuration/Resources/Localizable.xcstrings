@@ -1,0 +1,376 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Apply": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply"
+          }
+        }
+      }
+    },
+    "Backpack maximum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backpack maximum"
+          }
+        }
+      }
+    },
+    "Bike lock": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike lock"
+          }
+        }
+      }
+    },
+    "Braking traction": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Braking traction"
+          }
+        }
+      }
+    },
+    "Cancel / Reload": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel / Reload"
+          }
+        }
+      }
+    },
+    "Charge target": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charge target"
+          }
+        }
+      }
+    },
+    "Charging": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charging"
+          }
+        }
+      }
+    },
+    "Configuration": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration"
+          }
+        }
+      }
+    },
+    "Configuration applied.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration applied."
+          }
+        }
+      }
+    },
+    "Configuration block": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration block"
+          }
+        }
+      }
+    },
+    "Configuration rejected. Check the values; a power curve needs at least one nonzero sample.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration rejected. Check the values; a power curve needs at least one nonzero sample."
+          }
+        }
+      }
+    },
+    "Curves %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Curves %lld"
+          }
+        }
+      }
+    },
+    "Edit a block, then apply it to the simulated motorcycle. iPhone writes appear here too.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit a block, then apply it to the simulated motorcycle. iPhone writes appear here too."
+          }
+        }
+      }
+    },
+    "Enter a value in range with a supported precision.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a value in range with a supported precision."
+          }
+        }
+      }
+    },
+    "Lock timeout (raw)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock timeout (raw)"
+          }
+        }
+      }
+    },
+    "Locked (0 off, 1 on)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locked (0 off, 1 on)"
+          }
+        }
+      }
+    },
+    "Map %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map %lld"
+          }
+        }
+      }
+    },
+    "Maximum current": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum current"
+          }
+        }
+      }
+    },
+    "Minimum current (raw)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimum current (raw)"
+          }
+        }
+      }
+    },
+    "Percent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percent"
+          }
+        }
+      }
+    },
+    "Power": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power"
+          }
+        }
+      }
+    },
+    "Power and regeneration": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power and regeneration"
+          }
+        }
+      }
+    },
+    "Power limit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power limit"
+          }
+        }
+      }
+    },
+    "Power sample %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power sample %lld"
+          }
+        }
+      }
+    },
+    "Power traction": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power traction"
+          }
+        }
+      }
+    },
+    "Ramp time (raw)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ramp time (raw)"
+          }
+        }
+      }
+    },
+    "Regeneration": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeneration"
+          }
+        }
+      }
+    },
+    "Regeneration sample %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeneration sample %lld"
+          }
+        }
+      }
+    },
+    "Sample": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample"
+          }
+        }
+      }
+    },
+    "Series": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Series"
+          }
+        }
+      }
+    },
+    "Standard maximum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard maximum"
+          }
+        }
+      }
+    },
+    "Start time (raw)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start time (raw)"
+          }
+        }
+      }
+    },
+    "This block changed on the motorcycle. Reload before applying.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This block changed on the motorcycle. Reload before applying."
+          }
+        }
+      }
+    },
+    "Torque": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Torque"
+          }
+        }
+      }
+    },
+    "Traction %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traction %lld"
+          }
+        }
+      }
+    },
+    "Unapplied changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unapplied changes"
+          }
+        }
+      }
+    },
+    "Values": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Values"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
