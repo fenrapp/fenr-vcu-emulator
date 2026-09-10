@@ -1,9 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+source scripts/build-paths.sh
 python3 scripts/check-upstream.py
 python3 scripts/check-localization.py
-swift test
+swift test --scratch-path "$FENR_SWIFT_SCRATCH"
 scripts/generate.sh
 xcodebuild -quiet -project FENRVCUEmulator.xcodeproj -scheme FENRVCUEmulator \
-  -destination 'platform=macOS' -derivedDataPath DerivedData test
+  -destination 'platform=macOS' -derivedDataPath "$FENR_DERIVED_DATA" test

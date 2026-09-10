@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+source scripts/build-paths.sh
 # Launch Services reuses an existing process even after its bundle is rebuilt.
 # Refuse that path so this command always starts the executable it just built.
 python3 - <<'CHECK_RUNNING'
@@ -12,5 +13,5 @@ if any(PurePosixPath(line.strip()).name == "FENRVCUEmulator" for line in process
 CHECK_RUNNING
 scripts/generate.sh
 xcodebuild -quiet -project FENRVCUEmulator.xcodeproj -scheme FENRVCUEmulator \
-  -destination 'platform=macOS' -derivedDataPath DerivedData build
-open DerivedData/Build/Products/Debug/FENRVCUEmulator.app
+  -destination 'platform=macOS' -derivedDataPath "$FENR_DERIVED_DATA" build
+open "$FENR_DERIVED_DATA/Build/Products/Debug/FENRVCUEmulator.app"

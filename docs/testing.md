@@ -2,7 +2,7 @@
 
 ## Automatic checks
 
-Run `scripts/check.sh`. It executes the vendored-source hash check, localization key check, `swift test`, XcodeGen, and `xcodebuild test` for scheme FENRVCUEmulator with destination platform=macOS and DerivedData inside the ignored repository directory.
+Run `scripts/check.sh`. It executes the vendored-source hash check, localization key check, `swift test`, XcodeGen, and `xcodebuild test` for scheme FENRVCUEmulator with destination platform=macOS and DerivedData and SwiftPM artifacts in ~/Library/Caches/FENRVCUEmulator, outside the checkout.
 
 The tested development toolchain is Xcode 26.6. Xcode project generation and app signing require no personal signing team. The generated project is disposable. No repository-relative dependency points outside the clone.
 
