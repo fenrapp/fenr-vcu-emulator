@@ -2,7 +2,7 @@
 
 A native macOS BLE peripheral for testing FENR on a physical iPhone against a synthetic motorcycle. It models the known VCU protocol; it does not execute motorcycle firmware.
 
-**Status:** all phases (0-4) are implemented and integrated in `main`, preserving the small phase commits. Automated checks pass. Physical iPhone interoperability remains pending for a single end-to-end validation pass. There is no remote. Only phase 0 currently has an acceptance milestone tag.
+**Status:** all phases (0-4) are implemented and integrated in `main`, preserving the small phase commits. Automated checks pass. Physical iPhone discovery, V2 authentication and dashboard startup have been observed with a local FENR client fix; full acceptance remains pending (see progress). There is no remote. Only phase 0 currently has an acceptance milestone tag.
 
 ## Run
 
@@ -19,6 +19,8 @@ scripts/run.sh
 Allow Bluetooth access for FENR VCU Emulator, then click **Start**. The window should report **Advertising**. Discover synthetic bike `FENRTEST000000001` in FENR and use pairing date `19700101`. The derived motorcycle PIN is displayed in the Mac window; macOS controls the real bonding dialog and may use a different procedure. Never use a real motorcycle's identity for this emulator.
 
 The **Dashboard** changes battery, speed, temperature and active map. Select Parked, Riding, Charging or Partial telemetry. Battery evolution is intentionally accelerated to one percentage point per simulated minute; it is not a physical battery model.
+
+**Partial telemetry** deliberately sends only battery SOC. FENR requires all six dashboard datasets to finish startup, so this scenario can leave onboarding on **Securing the connection** or a saved bike on **Waiting for live telemetry**. For normal connection tests, choose **Parked**, **Riding** or **Charging**. Choose **Parked** and **Reset scenario** to recover without restarting either app.
 
 The **Configuration** panel inspects charge settings, maps, traction, lock and all advanced-curve samples. Make configuration changes from FENR on the iPhone and inspect the resulting values here. The **Failures** panel selects a reproducible fault before starting the peripheral.
 
