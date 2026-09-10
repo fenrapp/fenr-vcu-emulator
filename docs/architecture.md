@@ -29,7 +29,7 @@ The feature/domain/data folder organization, separation of mappers and view mode
 
 Liquid Glass is availability-gated to macOS 26. Earlier systems use native materials. Reduce Transparency uses an opaque surface; the interface has no custom motion that must be disabled. Text uses system typography, monospaced measurements, named layout constants and native keyboard controls.
 
-The macOS icon is an AI-generated cyan central-unit interpretation of the FENR mark, created for this project. Standard macOS icon sizes are included in App/Resources/Assets.xcassets. It contains no vendor motorcycle asset.
+The macOS icon uses the original dark FENR iPhone icon as the source for a cyan recolor. Source revision and the image-editing prompt are recorded in icon-generation.json. Standard macOS icon sizes are included in App/Resources/Assets.xcassets. It contains no vendor motorcycle asset.
 
 ## Contribution
 

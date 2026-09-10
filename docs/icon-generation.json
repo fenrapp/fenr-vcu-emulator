@@ -1,0 +1,8 @@
+{
+  "tool": "Built-in image_gen",
+  "sourceRepository": "FENR iOS",
+  "sourceCommit": "e6589e2535475a8f7b76a7eca8fff80cac04bc2f",
+  "sourceFile": "App/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-Dark.png",
+  "output": "App/Resources/Assets.xcassets/AppIcon.appiconset/icon-512@2x.png",
+  "prompt": "Edit the supplied original FENR iPhone app icon. This is a strict recoloring operation, NOT a redesign. Change ONLY the existing white claw-like FENR symbol to cyan (#55DDE7), preserving the original symbol's exact silhouette, stroke shapes, position, size, distressed edges, every cutout and interior texture. Keep the original black background and its texture unchanged. Keep the same square image and edge-to-edge background. Do not add a frame, chip, letters, border, rounded tile, margins, shadow, glow, gloss, bevel, reflections or new elements. The result must be recognizably the supplied original image with its white symbol recolored cyan and nothing else changed."
+}
