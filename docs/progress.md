@@ -34,3 +34,9 @@ Software integration is complete; no iPhone is required to build, run or inspect
 The earlier running process requested a full synthetic name plus the 128-bit bike-service UUID. The committed implementation already requested the name alone, but that change was not present in the running binary. After a fresh build and launch, the macOS daemon recorded the name-only request and the user confirmed that FENRTEST000000001 appeared in LightBlue on the iPhone. No raw system log or device identifier is versioned.
 
 This establishes discoverability for the rebuilt implementation on this Mac; it does not establish V2 or configuration interoperability. The run script now refuses to reuse an already-running emulator, preventing Launch Services from silently keeping an earlier executable after a rebuild.
+
+## Authenticated startup correction (2026-09-10)
+
+The physical iPhone completed the security exchange and subscribed to telemetry, but stayed on Securing the connection. The emulator incorrectly exposed SOC as 6003 (battery parameters), while the pinned FENR client requires SOC on 6004 for complete telemetry. The UUID is corrected and an independent full-UUID startup regression test covers all six required datasets.
+
+Correction commit: `79ae59e`. Automatic validation passes 27 package tests and 3 app tests. The corrected app has been rebuilt for the physical retry. Dashboard arrival on the iPhone after this correction is pending confirmation; earlier subscription evidence alone must not be recorded as complete startup acceptance.
