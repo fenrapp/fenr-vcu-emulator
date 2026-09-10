@@ -14,6 +14,7 @@ public final class SessionEngine {
     private var challengedAt: TimeInterval = 0
     private var subscriptions: Set<CharacteristicID> = []
     private let challengeLifetime: TimeInterval = 30
+    private var subscriptionDeadline: TimeInterval?
 
     public init(identity: EmulatedIdentity, verifier: AuthenticationVerifier,
                 nonceGenerator: any NonceGenerating, clock: any SessionClock) {
@@ -29,10 +30,11 @@ public final class SessionEngine {
         phase = .idle
         nonce = nil
         subscriptions.removeAll()
+        subscriptionDeadline = nil
     }
 
     public func readChallenge(central candidate: UUID, offset: Int) throws -> Data {
-        expireChallenge()
+        expireSession()
         guard offset >= 0 else { throw ProtocolFailure.invalidOffset }
         guard central == nil || central == candidate else { throw ProtocolFailure.busy }
         if offset == 0 {
@@ -51,7 +53,7 @@ public final class SessionEngine {
     }
 
     public func authenticate(central candidate: UUID, response: Data, reject: Bool = false) throws -> ProtocolNotification {
-        expireChallenge()
+        expireSession()
         guard central == candidate, phase == .challenged, let nonce else {
             throw ProtocolFailure.authenticationRequired
         }
@@ -64,7 +66,7 @@ public final class SessionEngine {
     }
 
     public func subscribe(central candidate: UUID, characteristic: CharacteristicID) throws {
-        expireChallenge()
+        expireSession()
         guard central == nil || central == candidate else { throw ProtocolFailure.busy }
         if characteristic != .security { try authorize(candidate) }
         if central == nil {
@@ -72,34 +74,47 @@ public final class SessionEngine {
             challengedAt = clock.now()
         }
         subscriptions.insert(characteristic)
+        subscriptionDeadline = nil
     }
 
     public func unsubscribe(central candidate: UUID, characteristic: CharacteristicID) {
         guard central == candidate else { return }
         subscriptions.remove(characteristic)
         // FENR disables security notifications before subscribing to telemetry.
-        if characteristic != .security && subscriptions.isEmpty { reset() }
+        guard subscriptions.isEmpty else { return }
+        if characteristic == .security && phase == .authenticated {
+            subscriptionDeadline = clock.now() + challengeLifetime
+        } else {
+            reset()
+        }
     }
 
     public func authorize(_ candidate: UUID) throws {
+        expireSession()
         guard central == candidate, phase == .authenticated else {
             throw ProtocolFailure.authenticationRequired
         }
     }
 
     public func notification(_ data: Data, characteristic: CharacteristicID, notBefore: TimeInterval = 0) -> ProtocolNotification? {
+        expireSession()
         guard let central, phase == .authenticated, subscriptions.contains(characteristic) else { return nil }
         return ProtocolNotification(central: central, characteristic: characteristic, data: data, generation: generation, notBefore: notBefore)
     }
 
     public func isCurrent(_ notification: ProtocolNotification) -> Bool {
-        notification.generation == generation && notification.central == central
+        expireSession()
+        return notification.generation == generation && notification.central == central
             && subscriptions.contains(notification.characteristic)
             && (notification.characteristic == .security || phase == .authenticated)
     }
 
-    private func expireChallenge() {
-        guard central != nil, phase != .authenticated else { return }
-        if clock.now() - challengedAt >= challengeLifetime { reset() }
+    private func expireSession() {
+        guard central != nil else { return }
+        if let subscriptionDeadline, clock.now() >= subscriptionDeadline {
+            reset()
+        } else if phase != .authenticated && clock.now() - challengedAt >= challengeLifetime {
+            reset()
+        }
     }
 }

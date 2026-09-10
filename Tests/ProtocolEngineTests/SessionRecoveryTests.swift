@@ -43,3 +43,42 @@ import VehicleSimulation
     #expect(status[8] == 0x18)
     #expect(try encoder.encode(state, characteristic: .versions) == Data([1,10,1,0,1,0,1,0,1,4,1,0]))
 }
+
+@MainActor @Test func abandonedAuthenticatedHandoffReleasesSession() throws {
+    let clock = ManualSessionClock()
+    let engine = try EngineTestFactory.make(clock: clock)
+    let first = UUID(), second = UUID()
+    try EngineTestFactory.authenticate(engine, central: first)
+    engine.session.unsubscribe(central: first, characteristic: .security)
+    clock.advance(29)
+    try engine.session.authorize(first)
+    #expect(throws: ProtocolFailure.busy) { try engine.session.readChallenge(central: second, offset: 0) }
+    clock.advance(1)
+    #expect(throws: ProtocolFailure.authenticationRequired) { try engine.session.authorize(first) }
+    _ = try engine.session.readChallenge(central: second, offset: 0)
+    #expect(engine.session.central == second)
+}
+
+@MainActor @Test func telemetrySubscriptionCancelsHandoffExpiry() throws {
+    let clock = ManualSessionClock()
+    let engine = try EngineTestFactory.make(clock: clock)
+    let client = UUID()
+    try EngineTestFactory.authenticate(engine, central: client)
+    engine.session.unsubscribe(central: client, characteristic: .security)
+    clock.advance(29)
+    _ = try engine.subscribe(central: client, characteristic: .battery)
+    clock.advance(31)
+    try engine.session.authorize(client)
+    #expect(!engine.telemetry().isEmpty)
+    engine.session.unsubscribe(central: client, characteristic: .battery)
+    #expect(engine.session.central == nil)
+}
+
+@MainActor @Test func abandonedChallengeReleasesImmediatelyAfterSecurityUnsubscribe() throws {
+    let engine = try EngineTestFactory.make()
+    let client = UUID()
+    _ = try engine.session.readChallenge(central: client, offset: 0)
+    try engine.session.subscribe(central: client, characteristic: .security)
+    engine.session.unsubscribe(central: client, characteristic: .security)
+    #expect(engine.session.central == nil)
+}
