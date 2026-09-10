@@ -2,6 +2,7 @@ import SwiftUI
 
 public struct NumberControl: View {
     private let title: String
+    private let showsTitle: Bool
     private let value: Double
     private let range: ClosedRange<Double>
     private let step: Double
@@ -10,15 +11,15 @@ public struct NumberControl: View {
     @State private var draft: Double
     @State private var dragging = false
     @FocusState private var focused: Bool
-    public init(_ title: String, value: Double, range: ClosedRange<Double>, step: Double, unit: String,
+    public init(_ title: String, value: Double, range: ClosedRange<Double>, step: Double, unit: String, showsTitle: Bool = true,
                 commit: @escaping (Double) -> Void) {
-        self.title = title; self.value = value; self.range = range; self.step = step; self.unit = unit
+        self.showsTitle = showsTitle; self.title = title; self.value = value; self.range = range; self.step = step; self.unit = unit
         self.commit = commit; _draft = State(initialValue: value)
     }
     public var body: some View {
         VStack(alignment: .leading, spacing: DesignSpace.compact) {
             HStack {
-                Text(verbatim: title)
+                if showsTitle { Text(verbatim: title) }
                 Spacer()
                 TextField(title, value: $draft, format: .number.precision(.fractionLength(0...2)))
                     .multilineTextAlignment(.trailing).monospacedDigit().frame(width: Layout.inputWidth)
