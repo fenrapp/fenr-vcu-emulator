@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
-"""Verify the vendored source manifest without accessing the original repository."""
+"""Verify vendored bytes against the source manifest without another checkout."""
 import hashlib
-import re
+import json
 from pathlib import Path
+
 root = Path(__file__).resolve().parents[1]
-manifest = (root / 'docs/upstream.md').read_text()
-entries = re.findall(r'- `(Modules/StarkProtocol/Sources/[^`]+)`: `([0-9a-f]{64})`', manifest)
+module = root / 'Modules/ProtocolCore'
+manifest = json.loads((module / 'UpstreamManifest.json').read_text())
+entries = manifest['files']
 assert entries, 'No upstream sources in manifest'
-for source, expected in entries:
-    path = root / 'Modules/ProtocolCore/Sources/Upstream' / source.removeprefix('Modules/StarkProtocol/Sources/')
-    actual = hashlib.sha256(path.read_bytes()).hexdigest()
-    assert actual == expected, f'Upstream source changed: {path.relative_to(root)}'
-listed = {source.removeprefix('Modules/StarkProtocol/Sources/') for source, _ in entries}
-actual = {str(p.relative_to(root / 'Modules/ProtocolCore/Sources/Upstream')) for p in (root / 'Modules/ProtocolCore/Sources/Upstream').rglob('*.swift')}
+listed = set()
+for entry in entries:
+    relative = Path(entry['vendored'])
+    assert relative.parts[:2] == ('Sources', 'Upstream') and '..' not in relative.parts, 'Invalid manifest path'
+    assert relative.as_posix() not in listed, 'Duplicate manifest entry'
+    listed.add(relative.as_posix())
+    path = module / relative
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == entry['sha256'], f'Upstream source changed: {relative}'
+actual = {p.relative_to(module).as_posix() for p in (module / 'Sources/Upstream').rglob('*.swift')}
 assert listed == actual, 'Upstream manifest does not match the vendored file set'
 print(f'Verified {len(entries)} upstream source files against the committed manifest.')
