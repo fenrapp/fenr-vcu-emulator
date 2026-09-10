@@ -50,13 +50,13 @@ public final class SessionEngine {
         return Data(nonce.dropFirst(offset))
     }
 
-    public func authenticate(central candidate: UUID, response: Data) throws -> ProtocolNotification {
+    public func authenticate(central candidate: UUID, response: Data, reject: Bool = false) throws -> ProtocolNotification {
         expireChallenge()
         guard central == candidate, phase == .challenged, let nonce else {
             throw ProtocolFailure.authenticationRequired
         }
         guard subscriptions.contains(.security) else { throw ProtocolFailure.unsupported }
-        let accepted = verifier.accepts(response, nonce: nonce, identity: identity)
+        let accepted = verifier.accepts(response, nonce: nonce, identity: identity) && !reject
         self.nonce = nil
         phase = accepted ? .authenticated : .idle
         return ProtocolNotification(central: candidate, characteristic: .security,
@@ -87,9 +87,9 @@ public final class SessionEngine {
         }
     }
 
-    public func notification(_ data: Data, characteristic: CharacteristicID) -> ProtocolNotification? {
+    public func notification(_ data: Data, characteristic: CharacteristicID, notBefore: TimeInterval = 0) -> ProtocolNotification? {
         guard let central, phase == .authenticated, subscriptions.contains(characteristic) else { return nil }
-        return ProtocolNotification(central: central, characteristic: characteristic, data: data, generation: generation)
+        return ProtocolNotification(central: central, characteristic: characteristic, data: data, generation: generation, notBefore: notBefore)
     }
 
     public func isCurrent(_ notification: ProtocolNotification) -> Bool {

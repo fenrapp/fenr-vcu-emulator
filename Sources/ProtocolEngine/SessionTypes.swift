@@ -10,12 +10,14 @@ public struct ProtocolNotification: Equatable, Sendable {
     public let characteristic: CharacteristicID
     public let data: Data
     public let generation: UInt64
+    public let notBefore: TimeInterval
 
-    public init(central: UUID, characteristic: CharacteristicID, data: Data, generation: UInt64) {
+    public init(central: UUID, characteristic: CharacteristicID, data: Data, generation: UInt64, notBefore: TimeInterval = 0) {
         self.central = central
         self.characteristic = characteristic
         self.data = data
         self.generation = generation
+        self.notBefore = notBefore
     }
 }
 

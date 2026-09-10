@@ -27,5 +27,6 @@ public struct NotificationQueue {
         return true
     }
     public mutating func removeFirst() { if !values.isEmpty { values.removeFirst() } }
+    public mutating func removeTelemetry() { values.removeAll { $0.characteristic.isTelemetry } }
     public mutating func clear() { values.removeAll() }
 }

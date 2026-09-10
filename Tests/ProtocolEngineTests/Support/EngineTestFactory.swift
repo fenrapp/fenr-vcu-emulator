@@ -5,12 +5,12 @@ import VehicleSimulation
 
 @MainActor
 enum EngineTestFactory {
-    static func make() throws -> EmulatorEngine {
+    static func make(clock: ManualSessionClock = ManualSessionClock()) throws -> EmulatorEngine {
         let identity = try EmulatedIdentity(vin: "FENRTEST000000001", pairingDate: "19700101")
         let session = SessionEngine(identity: identity, verifier: AuthenticationVerifier(builder: StarkAuthenticationPayloadBuilder()),
-                                    nonceGenerator: FixedNonceGenerator(), clock: ManualSessionClock())
+                                    nonceGenerator: FixedNonceGenerator(), clock: clock)
         return EmulatorEngine(session: session, state: VehicleState(), encoder: TelemetryEncoder(),
-                              simulator: ScenarioSimulator(), configurationHandler: ConfigurationHandler())
+                              simulator: ScenarioSimulator(), configurationHandler: ConfigurationHandler(), clock: clock)
     }
     static func authenticate(_ engine: EmulatorEngine, central: UUID) throws {
         let nonce = try engine.read(central: central, characteristic: .security, offset: 0)

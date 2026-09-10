@@ -8,6 +8,8 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
     private let engine: EmulatorEngine
     private let event: @MainActor (PeripheralEvent) -> Void
     private var queue: NotificationQueue
+    private let clock: any SessionClock
+    private var pendingReads: [PendingRead] = []
     private var manager: CBPeripheralManager?
     private var characteristics: [CharacteristicID: CBMutableCharacteristic] = [:]
     private var centrals: [UUID: CBCentral] = [:]
@@ -15,10 +17,11 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
     private var running = false
     private var security: LinkSecurity = .encrypted
 
-    public init(engine: EmulatorEngine, queue: NotificationQueue,
+    public init(engine: EmulatorEngine, queue: NotificationQueue, clock: any SessionClock,
                 event: @escaping @MainActor (PeripheralEvent) -> Void) {
         self.engine = engine
         self.queue = queue
+        self.clock = clock
         self.event = event
     }
 
@@ -32,6 +35,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
 
     public func stop() {
         running = false
+        finishPendingReads(failed: true)
         manager?.stopAdvertising()
         manager?.removeAllServices()
         manager?.delegate = nil
@@ -46,12 +50,15 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
 
     public func publishTelemetry() {
         guard running else { return }
+        finishPendingReads(failed: false)
+        queue.removeTelemetry()
         enqueue(engine.telemetry())
     }
 
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         guard active(peripheral) else { return }
         guard peripheral.state == .poweredOn else {
+            finishPendingReads(failed: true)
             queue.clear()
             engine.session.reset()
             centrals.removeAll()
@@ -70,11 +77,13 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
         for serviceID in GATTProfile.services {
             let service = CBMutableService(type: CBUUID(nsuuid: GATTProfile.uuid(serviceID)), primary: true)
             service.characteristics = CharacteristicID.allCases.filter { $0.service == serviceID }.map { id in
-                var properties: CBCharacteristicProperties = [.read, .notify]
-                var permissions: CBAttributePermissions = [.readable]
+                let readable = id != .configuration || engine.configurationReadable
+                var properties: CBCharacteristicProperties = [.notify]
+                var permissions: CBAttributePermissions = []
+                if readable { properties.insert(.read); permissions.insert(.readable) }
                 if id.canWrite { properties.insert(.write); permissions.insert(.writeable) }
                 if security == .encrypted {
-                    permissions.insert(.readEncryptionRequired)
+                    if readable { permissions.insert(.readEncryptionRequired) }
                     properties.insert(.notifyEncryptionRequired)
                     if id.canWrite { permissions.insert(.writeEncryptionRequired) }
                 }
@@ -112,7 +121,16 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
         do {
             let value = try engine.read(central: request.central.identifier, characteristic: id, offset: request.offset)
             request.value = value
-            peripheral.respond(to: request, withResult: .success)
+            if id == .configuration && engine.responseDelay > 0 {
+                guard pendingReads.count < 32 else {
+                    peripheral.respond(to: request, withResult: .insufficientResources)
+                    return
+                }
+                pendingReads.append(PendingRead(request: request, generation: engine.session.generation,
+                                                deadline: clock.now() + engine.responseDelay))
+            } else {
+                peripheral.respond(to: request, withResult: .success)
+            }
             event(.transaction(operation: "read", characteristic: id.rawValue, bytes: value.count))
             event(.session(engine.session.phase))
         } catch {
@@ -184,6 +202,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
                   let characteristic = characteristics[next.characteristic] else {
                 queue.removeFirst(); continue
             }
+            guard next.notBefore <= clock.now() else { return }
             guard next.data.count <= central.maximumUpdateValueLength else {
                 stop()
                 event(.failure("Payload exceeds negotiated notification limit"))
@@ -192,6 +211,24 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
             guard manager.updateValue(next.data, for: characteristic, onSubscribedCentrals: [central]) else { return }
             queue.removeFirst()
         }
+    }
+
+    private struct PendingRead {
+        let request: CBATTRequest
+        let generation: UInt64
+        let deadline: TimeInterval
+    }
+
+    private func finishPendingReads(failed: Bool) {
+        guard let manager else { pendingReads.removeAll(); return }
+        var remaining: [PendingRead] = []
+        for pending in pendingReads {
+            let stale = pending.generation != engine.session.generation
+            if failed || stale || pending.deadline <= clock.now() {
+                manager.respond(to: pending.request, withResult: failed || stale ? .unlikelyError : .success)
+            } else { remaining.append(pending) }
+        }
+        pendingReads = remaining
     }
 
     private func active(_ peripheral: CBPeripheralManager) -> Bool { running && manager === peripheral }
