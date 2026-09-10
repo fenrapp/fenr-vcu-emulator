@@ -1,25 +1,19 @@
-# Testing and acceptance
+# Validation
 
 ## Automatic checks
 
-Run `scripts/check.sh`. It executes the vendored-source hash check, localization key check, `swift test`, XcodeGen, and `xcodebuild test` for scheme FENRVCUEmulator with destination platform=macOS and DerivedData and SwiftPM artifacts in ~/Library/Caches/FENRVCUEmulator, outside the checkout.
+Run `scripts/check.sh` from the repository root. It verifies the vendored-source manifest, feature catalogs and architectural imports; runs Swift package tests; generates the Xcode project; and builds/tests the app with ad hoc signing and external caches.
 
-The tested development toolchain is Xcode 26.6. Xcode project generation and app signing require no personal signing team. The generated project is disposable. No repository-relative dependency points outside the clone.
+Coverage includes independent wire fixtures and scales, V2 and replay rejection, offsets and bounded queues, signed configuration records and full curve readback, scenario resets/signals/interrupted charging, stale response cancellation, observer independence, ticker restart/teardown, atomic block conflicts, malformed presets/storage failures, mapper precision, filtering and injected clipboard export. Runtime tests retain test doubles in their own directory.
 
-For a clean-clone check, clone the current local branch into a temporary directory and run that clone's scripts/check.sh. Build caches, result bundles and captured output belong in ignored artifacts or temporary storage.
+For an isolated checkout, clone this local repository to a temporary directory and run the same script. No sibling checkout is required. Verify `git status --porcelain` is empty and that `.build/` and `DerivedData/` are absent afterwards. Cache paths are shared by this application, so run builds serially. The generated Xcode project is disposable and ignored.
 
-## Cases
+## Visual checks
 
-- Independent V2 digest fixture, invalid identity, invalid response, nonce expiry, second client exclusion and replay rejection.
-- Session teardown invalidates queued notifications; security unsubscribe before telemetry subscribe remains supported, with a 30-second handoff deadline to release abandoned clients.
-- Battery, speed, status and version bytes; deterministic ride distance and charge-target progression.
-- Configuration no-op/read/write/readback with complete sibling preservation and invalid request atomicity.
-- Signed traction values, mode 0x0F, lock type/timeout, five advanced curves and distinct write/read layouts.
-- Configuration survives reconnect; cached replies do not. Reset scenario restores configuration.
-- Bounded/coalesced notification queues, response deadlines and stale delayed responses across reconnect, scenario reset and fault-profile changes.
-- Rejected authentication, missing responses, read failure then explicit traction commit, unsupported firmware/records, unapplied writes, frozen and malformed telemetry.
-- App controls without Bluetooth activation; stop/restart/deinit cancels periodic publication.
+Inspect Simulation, Configuration, Failures and Activity at 1100 x 760 and at the 800 x 600 minimum. Check numeric keyboard entry, scrolling, curve editing, disabled actions, preset loading and clipboard contents. Check system light/dark appearance and reduce-transparency fallback. Confirm the app icon remains legible at small sizes.
 
-## Manual checks
+Do not mistake a rebuilt bundle for a relaunched executable: quit the old app before scripts/run.sh. A new ad hoc build can require a fresh macOS Bluetooth permission decision. Resolve that before diagnosing protocol timeouts.
 
-Use docs/physical-validation.md. Unit tests cannot establish real pairing UX, radio link exclusivity, negotiated transport limits, disconnect reasons or iPhone interoperability. Native UI needs an inspection at the intended window size. Testing on a current Mac does not establish macOS 14 runtime coverage.
+## Physical checks
+
+Use physical-validation.md and record the exact emulator/FENR commits and OS versions. Automatic byte/model tests do not prove iPhone interoperability. Keep captures and identifiers outside Git. No acceptance milestone is created until its complete checklist passes.
