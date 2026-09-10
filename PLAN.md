@@ -1,6 +1,6 @@
-# FENR VCU Emulator - implementation proposal
+# FENR VCU Emulator - implementation plan
 
-Status: software implementations for phases 0-4 exist as of 2026-09-10. Only phase 0 has complete acceptance. See docs/progress.md for actual validation and pending physical checks.
+Status: all five software phases are implemented and integrated in main as of 2026-09-10. Physical checks are deferred to one final user validation pass. See docs/progress.md for evidence and pending checks.
 
 ## Objective
 
@@ -65,25 +65,31 @@ The repository is autonomous. Necessary pure protocol sources are vendored from 
 
 ## Git and implementation stages
 
-Local repository, main branch, no remote or pushes. Use conventional commits on chore/bootstrap, feature/ble-authentication, feature/scenario-dashboard, feature/configuration-emulation and feature/fault-scenarios. Keep software-only phases on stacked branches until physical acceptance. Merge accepted history using fast-forward and annotate milestone/phase-N only after the corresponding acceptance checks pass. Do not rewrite history.
+Local repository, main branch, no remote or pushes. Use conventional commits on chore/bootstrap, feature/ble-authentication, feature/scenario-dashboard, feature/configuration-emulation and feature/fault-scenarios. The user requested implementation and integration of every phase before their single final physical test pass. Fast-forward all phase history into main after automatic checks, preserving each small commit and the phase branches. Physical testing does not gate this integration. Annotate milestone/phase-N only after the corresponding acceptance checks pass. Do not rewrite history.
 
 Phase 0 adds the native window, four Swift modules, XcodeGen and reproducible scripts. Later phase descriptions below retain the original capability goals. Full acceptance remains distinct from implementation and automated tests.
 
 ## Delivery stages and acceptance
 
-### 0. BLE feasibility slice
+### 0. Reproducible project
+
+Create the local Git repository and main branch, preserve the plan, add the native window, four Swift modules, XcodeGen, Bluetooth permission declaration, ad hoc signing and development scripts.
+
+Accepted when generation, module/app tests and compilation pass from a clean checkout and the bootstrap app launches on the Mac.
+
+### 1. BLE connection and authentication
 
 Minimal Mac app, one synthetic bike, essential GATT services, real V2 validation and adjustable battery/speed/status values.
 
 Accepted when a physical iPhone discovers and connects through FENR's normal BLE path, authenticates, displays changing telemetry, disconnects and reconnects successfully. Record Mac/iPhone OS versions and the pairing limitations. Validate the largest planned payload early. Do not bypass FENR authentication to make this pass.
 
-### 1. Useful daily dashboard simulator
+### 2. Useful daily dashboard simulator
 
 Add Start/Stop, reset, scenario selection, speed, battery percentage, temperatures, active map and charging state. Provide parked, riding, charging and partial-telemetry scenarios, plus a readable event timeline.
 
 Accepted when changes appear on the phone and related measurements remain coherent. Verify start/stop/restart and session cleanup. Do not invent rider-facing meanings for unknown fields.
 
-### 2. Stateful configuration
+### 3. Stateful configuration
 
 Implement the supported 4005 transaction flows, separating ATT write acknowledgement from protocol status and subsequent read-back. Preserve firmware/capability profiles and the client's existing guards.
 
@@ -91,7 +97,7 @@ Start with charge power/target and base maps, then add guarded traction, bike lo
 
 Accepted when FENR reads a configuration, performs its required preparation/no-op checks, writes a change and confirms fresh emulator state. Include rejected writes and acknowledged-but-unapplied changes. Emulator success does not add physical validation evidence for traction, lock or advanced curves.
 
-### 3. Reproducible failures and regression scenarios
+### 4. Reproducible failures and regression scenarios
 
 Add delayed or missing application responses, rejected authentication, stale telemetry, malformed application payloads, unsupported firmware/capabilities and configurable read-back mismatches. Test a failed bounded traction read followed by an explicit user commit separately from the ordinary preparation path.
 

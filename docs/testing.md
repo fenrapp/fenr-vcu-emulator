@@ -11,12 +11,12 @@ For a clean-clone check, clone the current local branch into a temporary directo
 ## Cases
 
 - Independent V2 digest fixture, invalid identity, invalid response, nonce expiry, second client exclusion and replay rejection.
-- Session teardown invalidates queued notifications; security unsubscribe before telemetry subscribe remains supported.
+- Session teardown invalidates queued notifications; security unsubscribe before telemetry subscribe remains supported, with a 30-second handoff deadline to release abandoned clients.
 - Battery, speed, status and version bytes; deterministic ride distance and charge-target progression.
 - Configuration no-op/read/write/readback with complete sibling preservation and invalid request atomicity.
 - Signed traction values, mode 0x0F, lock type/timeout, five advanced curves and distinct write/read layouts.
 - Configuration survives reconnect; cached replies do not. Reset scenario restores configuration.
-- Bounded/coalesced notification queues, response deadlines and stale delayed responses.
+- Bounded/coalesced notification queues, response deadlines and stale delayed responses across reconnect, scenario reset and fault-profile changes.
 - Rejected authentication, missing responses, read failure then explicit traction commit, unsupported firmware/records, unapplied writes, frozen and malformed telemetry.
 - App controls without Bluetooth activation; stop/restart/deinit cancels periodic publication.
 

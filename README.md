@@ -2,7 +2,7 @@
 
 A native macOS BLE peripheral for testing FENR on a physical iPhone against a synthetic motorcycle. It models the known VCU protocol; it does not execute motorcycle firmware.
 
-**Status:** phases 0-4 have software implementations and automated tests. Only phase 0 has complete acceptance. Physical iPhone interoperability is still pending. The complete working implementation is on `feature/fault-scenarios`; `main` remains at the accepted bootstrap milestone. There is no remote.
+**Status:** all phases (0-4) are implemented and integrated in `main`, preserving the small phase commits. Automated checks pass. Physical iPhone interoperability remains pending for a single end-to-end validation pass. There is no remote. Only phase 0 currently has an acceptance milestone tag.
 
 ## Run
 
