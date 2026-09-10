@@ -1,8 +1,26 @@
 # Implementation progress
 
-- Repository: local Git, main branch, no remote.
-- Phase 0: passed package tests and xcodebuild app tests on Xcode 26.6, including a clean local clone. Native window launched and visually inspected on macOS. No sibling checkout dependency.
-- Phase 1: implemented and automatically tested; native controls inspected. Bluetooth authorization and physical iPhone validation pending. No milestone tag.
-- Phases 2-4: software implementation may proceed on stacked branches with automatic tests; physical acceptance and main integration remain gated on phase 1.
+Repository: local Git, no remote. Main contains the accepted phase-0 bootstrap. Subsequent phase branches are stacked, and feature/fault-scenarios contains the complete implementation. No unvalidated phase is tagged or merged into main.
 
-Milestone tags require all acceptance checks, including physical checks where specified. A passing build is not evidence of BLE connectivity.
+| Phase | Software | Automatic validation | Physical acceptance |
+| --- | --- | --- | --- |
+| 0 | Native app, modules, scripts, autonomous build | Passed, including a clean clone | Native bootstrap window launched and inspected; milestone/phase-0 exists |
+| 1 | GATT peripheral, V2, battery/speed/status, session recovery | Passed | Bluetooth authorization and physical iPhone connection pending |
+| 2 | Deterministic scenarios, controls, temperature/map, activity | Passed | Earlier dashboard and Charging selection inspected on Mac; iPhone behavior pending |
+| 3 | Stateful charging/maps/traction/lock/advanced curves | Passed | Earlier configuration inspector inspected on Mac; iPhone writes/readback pending |
+| 4 | Fault profiles, response scheduling, inspection UI | Passed | Failure selector inspected; fault behavior on iPhone pending |
+
+## Verification environment
+
+Development toolchain: Xcode 26.6, Swift 6 language mode, Apple Silicon Mac. Protocol source baseline: 429e5a05f752ec8ac77cd88cb54e3fac65b6fc34. No iOS working-tree changes were copied.
+
+Package tests cover wire fixtures, authentication, signed traction, curve layout, stateful configuration, reconnects, fault behavior and notification queue bounds. App tests cover presentation consistency and owned ticker cancellation/restart/deinit. See scripts/check.sh for the exact checks.
+
+## Remaining acceptance work
+
+1. Confirm macOS Bluetooth permission and actual advertising on this Mac. The attempted start remained at Starting Bluetooth; no advertising success has been observed.
+2. Complete the physical iPhone checklist, including bonding profile, V2, CCCD, 68-byte writes and 64-byte replies.
+3. Recheck the final window layout at small sizes. An earlier native inspection found clipping; the layout now uses an outer scroll view and an in-content section picker. The computer-use service then failed with a closed native pipe, so the final layout correction has passed compilation but has not been re-inspected live.
+4. Validate the displayed configuration and failure behavior against the iPhone. Only then integrate the corresponding phase history and create its acceptance tags.
+
+The software was developed on stacked branches while physical validation was unavailable. This does not satisfy the BLE feasibility gate. A macOS limitation that prevents required interoperability must be resolved before claiming these phases accepted.

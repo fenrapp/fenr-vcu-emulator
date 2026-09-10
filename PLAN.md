@@ -1,6 +1,6 @@
 # FENR VCU Emulator - implementation proposal
 
-Status: planning only, 2026-09-10. No BLE peripheral has been implemented or physically validated.
+Status: software implementations for phases 0-4 exist as of 2026-09-10. Only phase 0 has complete acceptance. See docs/progress.md for actual validation and pending physical checks.
 
 ## Objective
 
@@ -61,11 +61,13 @@ Own every timer/task and cancel queued work on stop/reset. Discard stale callbac
 
 ## Reuse strategy
 
-Keep this project separate from fenr-ios-app. Reuse the pure protocol definitions through a versioned Swift package when practical. StarkProtocol is currently a source module; there is no existing Package.swift to consume directly.
+The repository is autonomous. Necessary pure protocol sources are vendored from committed FENR revision 429e5a05f752ec8ac77cd88cb54e3fac65b6fc34, with MIT license and SHA-256 manifest in docs/upstream.md. Builds do not access the sibling repository. Peripheral-side encoders and handlers are independent implementations, tested against expected bytes and the selected client decoders.
 
-For the feasibility prototype, a documented local source reference can avoid an immediate refactor of the iOS repository. Before making the emulator independently reproducible, choose either a shared versioned package or a deliberately synchronized source subset with its origin revision recorded. Do not depend on the entire BikeSDK or app composition.
+## Git and implementation stages
 
-Use BikeEmulator as a behavioral reference rather than importing all its domain repository dependencies. Implement peripheral-side encoders and request handlers: existing client decoders alone are insufficient. Include independent expected-byte fixtures so a shared client/emulator mistake cannot pass only through round-trip tests.
+Local repository, main branch, no remote or pushes. Use conventional commits on chore/bootstrap, feature/ble-authentication, feature/scenario-dashboard, feature/configuration-emulation and feature/fault-scenarios. Keep software-only phases on stacked branches until physical acceptance. Merge accepted history using fast-forward and annotate milestone/phase-N only after the corresponding acceptance checks pass. Do not rewrite history.
+
+Phase 0 adds the native window, four Swift modules, XcodeGen and reproducible scripts. Later phase descriptions below retain the original capability goals. Full acceptance remains distinct from implementation and automated tests.
 
 ## Delivery stages and acceptance
 
