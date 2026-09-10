@@ -5,7 +5,7 @@ import VehicleSimulation
 @testable import ProtocolEngine
 
 @Test func chargingNoOpAndWritePreserveSiblingValues() throws {
-    let handler = ConfigurationHandler()
+    let handler = ConfigurationHandler(validator: ConfigurationValidator())
     var state = VehicleConfiguration.defaults
     let initial = try handler.handle(Data([0,4]), configuration: &state)
     #expect(initial == Data([0,4,0,200,0,220,5,32,3,10,0,0,0,0,0,228,12,228,12]))
@@ -21,7 +21,7 @@ import VehicleSimulation
 }
 
 @Test func baseMapWriteNormalizesSelectorAndInvalidRequestIsAtomic() throws {
-    let handler = ConfigurationHandler()
+    let handler = ConfigurationHandler(validator: ConfigurationValidator())
     var state = VehicleConfiguration.defaults
     state.maps[0].curve = 0
     let before = state
@@ -37,7 +37,7 @@ import VehicleSimulation
 }
 
 @Test func tractionPreservesBothSignedTenthsAndRejectsWrongMode() throws {
-    let handler = ConfigurationHandler()
+    let handler = ConfigurationHandler(validator: ConfigurationValidator())
     var state = VehicleConfiguration.defaults
     let result = try handler.handle(Data([1,8,1,2,15,133,255,200,1]), configuration: &state)
     #expect(result == Data([1,8,0]))
@@ -55,7 +55,7 @@ import VehicleSimulation
 }
 
 @Test func lockRoundTripPreservesTypeAndTimeoutAndUpdatesTelemetry() throws {
-    let handler = ConfigurationHandler()
+    let handler = ConfigurationHandler(validator: ConfigurationValidator())
     var state = VehicleConfiguration.defaults
     _ = try handler.handle(Data([1,5,0x83,1,1,30,0]), configuration: &state)
     let response = try handler.handle(Data([0,5]), configuration: &state)
@@ -71,7 +71,7 @@ import VehicleSimulation
 }
 
 @Test func advancedCurvesUseDistinctWriteAndReadLayouts() throws {
-    let handler = ConfigurationHandler()
+    let handler = ConfigurationHandler(validator: ConfigurationValidator())
     var state = VehicleConfiguration.defaults
     let curve = StarkPowerCurveConfigurationPayload(curve: 3, power: Array(100...114), regeneration: Array(200...214))
     let packet = try StarkPowerCurveConfigurationCommand.writePacket(curve)

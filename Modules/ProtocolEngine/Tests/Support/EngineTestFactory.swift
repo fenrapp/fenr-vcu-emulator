@@ -10,7 +10,7 @@ enum EngineTestFactory {
         let session = SessionEngine(identity: identity, verifier: AuthenticationVerifier(builder: StarkAuthenticationPayloadBuilder()),
                                     nonceGenerator: FixedNonceGenerator(), clock: clock)
         return EmulatorEngine(session: session, state: VehicleState(), encoder: TelemetryEncoder(),
-                              simulator: ScenarioSimulator(), configurationHandler: ConfigurationHandler(), clock: clock)
+                              simulator: ScenarioSimulator(), configurationHandler: ConfigurationHandler(validator: ConfigurationValidator()), clock: clock)
     }
     static func authenticate(_ engine: EmulatorEngine, central: UUID) throws {
         let nonce = try engine.read(central: central, characteristic: .security, offset: 0)

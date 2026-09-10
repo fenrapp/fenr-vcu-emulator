@@ -3,7 +3,8 @@ import ProtocolCore
 import VehicleSimulation
 
 public struct ConfigurationHandler: Sendable {
-    public init() {}
+    private let validator: ConfigurationValidator
+    public init(validator: ConfigurationValidator) { self.validator = validator }
 
     public func handle(_ data: Data, configuration: inout VehicleConfiguration) throws -> Data {
         let bytes = Array(data)
@@ -19,6 +20,7 @@ public struct ConfigurationHandler: Sendable {
         case 5: response = try lock(bytes, configuration: &candidate)
         default: throw ProtocolFailure.unsupported
         }
+        try validator.validate(candidate)
         configuration = candidate
         return response
     }

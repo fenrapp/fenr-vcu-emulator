@@ -6,6 +6,7 @@ public struct TelemetryEncoder: Sendable {
     public init() {}
 
     public func encode(_ state: VehicleState, characteristic: CharacteristicID) throws -> Data {
+        guard state.hasValidTelemetry else { throw ProtocolFailure.unsupported }
         if state.partialTelemetry && characteristic.isTelemetry && characteristic != .battery {
             throw ProtocolFailure.unsupported
         }
