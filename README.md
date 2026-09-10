@@ -68,7 +68,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and bug-rep
 - [Architecture](docs/architecture.md): module boundaries and lifecycle ownership.
 - [Protocol compatibility](docs/compatibility.md): supported records, wire formats and client baseline.
 - [Testing](docs/testing.md) and [physical checklist](docs/physical-validation.md).
-- [Changelog](CHANGELOG.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
+- [Changelog](CHANGELOG.md).
 
 ## Scope
 
@@ -78,4 +78,4 @@ Successful emulator tests do not replace final testing on the motorcycle. Full B
 
 ## License
 
-[MIT](LICENSE). Retained source licenses and artwork attribution are documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+[MIT](LICENSE).
