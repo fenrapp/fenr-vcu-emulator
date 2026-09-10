@@ -9,7 +9,8 @@
             "value": "Apply"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Backpack maximum": {
       "localizations": {
@@ -19,7 +20,8 @@
             "value": "Backpack maximum"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Bike lock": {
       "localizations": {
@@ -29,7 +31,8 @@
             "value": "Bike lock"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Braking traction": {
       "localizations": {
@@ -39,7 +42,8 @@
             "value": "Braking traction"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Cancel / Reload": {
       "localizations": {
@@ -49,7 +53,8 @@
             "value": "Cancel / Reload"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charge target": {
       "localizations": {
@@ -59,7 +64,8 @@
             "value": "Charge target"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charging": {
       "localizations": {
@@ -69,7 +75,8 @@
             "value": "Charging"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Configuration": {
       "localizations": {
@@ -79,7 +86,8 @@
             "value": "Configuration"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Configuration applied.": {
       "localizations": {
@@ -89,7 +97,8 @@
             "value": "Configuration applied."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Configuration block": {
       "localizations": {
@@ -99,7 +108,8 @@
             "value": "Configuration block"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Configuration rejected. Check the values; a power curve needs at least one nonzero sample.": {
       "localizations": {
@@ -109,7 +119,8 @@
             "value": "Configuration rejected. Check the values; a power curve needs at least one nonzero sample."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Curves %lld": {
       "localizations": {
@@ -119,7 +130,8 @@
             "value": "Curves %lld"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Edit a block, then apply it to the simulated motorcycle. iPhone writes appear here too.": {
       "localizations": {
@@ -129,7 +141,8 @@
             "value": "Edit a block, then apply it to the simulated motorcycle. iPhone writes appear here too."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Enter a value in range with a supported precision.": {
       "localizations": {
@@ -139,7 +152,8 @@
             "value": "Enter a value in range with a supported precision."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Lock timeout (raw)": {
       "localizations": {
@@ -149,7 +163,8 @@
             "value": "Lock timeout (raw)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Locked (0 off, 1 on)": {
       "localizations": {
@@ -159,7 +174,8 @@
             "value": "Locked (0 off, 1 on)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Map %lld": {
       "localizations": {
@@ -169,7 +185,8 @@
             "value": "Map %lld"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Maximum current": {
       "localizations": {
@@ -179,7 +196,8 @@
             "value": "Maximum current"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Minimum current (raw)": {
       "localizations": {
@@ -189,7 +207,8 @@
             "value": "Minimum current (raw)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Percent": {
       "localizations": {
@@ -199,7 +218,8 @@
             "value": "Percent"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Power": {
       "localizations": {
@@ -209,7 +229,8 @@
             "value": "Power"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Power and regeneration": {
       "localizations": {
@@ -219,7 +240,8 @@
             "value": "Power and regeneration"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Power limit": {
       "localizations": {
@@ -229,7 +251,8 @@
             "value": "Power limit"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Power sample %lld": {
       "localizations": {
@@ -239,7 +262,8 @@
             "value": "Power sample %lld"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Power traction": {
       "localizations": {
@@ -249,7 +273,8 @@
             "value": "Power traction"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Ramp time (raw)": {
       "localizations": {
@@ -259,7 +284,8 @@
             "value": "Ramp time (raw)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Regeneration": {
       "localizations": {
@@ -269,7 +295,8 @@
             "value": "Regeneration"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Regeneration sample %lld": {
       "localizations": {
@@ -279,7 +306,8 @@
             "value": "Regeneration sample %lld"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Sample": {
       "localizations": {
@@ -289,7 +317,8 @@
             "value": "Sample"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Series": {
       "localizations": {
@@ -299,7 +328,8 @@
             "value": "Series"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Standard maximum": {
       "localizations": {
@@ -309,7 +339,8 @@
             "value": "Standard maximum"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Start time (raw)": {
       "localizations": {
@@ -319,7 +350,8 @@
             "value": "Start time (raw)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "This block changed on the motorcycle. Reload before applying.": {
       "localizations": {
@@ -329,7 +361,8 @@
             "value": "This block changed on the motorcycle. Reload before applying."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Torque": {
       "localizations": {
@@ -339,7 +372,8 @@
             "value": "Torque"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Traction %lld": {
       "localizations": {
@@ -349,7 +383,8 @@
             "value": "Traction %lld"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Unapplied changes": {
       "localizations": {
@@ -359,7 +394,8 @@
             "value": "Unapplied changes"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Values": {
       "localizations": {
@@ -369,7 +405,8 @@
             "value": "Values"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

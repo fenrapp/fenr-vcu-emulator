@@ -9,7 +9,8 @@
             "value": "Accept writes without applying"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Acknowledge supported writes but retain the previous configuration. Fresh reads expose the unchanged values.": {
       "localizations": {
@@ -19,7 +20,8 @@
             "value": "Acknowledge supported writes but retain the previous configuration. Fresh reads expose the unchanged values."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Active profile": {
       "localizations": {
@@ -29,7 +31,8 @@
             "value": "Active profile"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Application silence is not disconnection": {
       "localizations": {
@@ -39,7 +42,8 @@
             "value": "Application silence is not disconnection"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Delay application responses": {
       "localizations": {
@@ -49,7 +53,8 @@
             "value": "Delay application responses"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Fail initial traction read": {
       "localizations": {
@@ -59,7 +64,8 @@
             "value": "Fail initial traction read"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Failures": {
       "localizations": {
@@ -69,7 +75,8 @@
             "value": "Failures"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Fault profile": {
       "localizations": {
@@ -79,7 +86,8 @@
             "value": "Fault profile"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Freeze telemetry": {
       "localizations": {
@@ -89,7 +97,8 @@
             "value": "Freeze telemetry"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Hold configuration replies for the selected delay. ATT acknowledgments remain separate.": {
       "localizations": {
@@ -99,7 +108,8 @@
             "value": "Hold configuration replies for the selected delay. ATT acknowledgments remain separate."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Keep the selected datasets at their current values while the simulated state continues changing.": {
       "localizations": {
@@ -109,7 +119,8 @@
             "value": "Keep the selected datasets at their current values while the simulated state continues changing."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Malformed speed payload": {
       "localizations": {
@@ -119,7 +130,8 @@
             "value": "Malformed speed payload"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "No fault": {
       "localizations": {
@@ -129,7 +141,8 @@
             "value": "No fault"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Normal protocol behavior. All supported commands are available.": {
       "localizations": {
@@ -139,7 +152,8 @@
             "value": "Normal protocol behavior. All supported commands are available."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reject advanced curve operations. Restart required.": {
       "localizations": {
@@ -149,7 +163,8 @@
             "value": "Reject advanced curve operations. Restart required."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reject authentication": {
       "localizations": {
@@ -159,7 +174,8 @@
             "value": "Reject authentication"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reject the V2 response. Stop Bluetooth before changing this profile.": {
       "localizations": {
@@ -169,7 +185,8 @@
             "value": "Reject the V2 response. Stop Bluetooth before changing this profile."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reject traction reads until an explicit traction write succeeds in this session.": {
       "localizations": {
@@ -179,7 +196,8 @@
             "value": "Reject traction reads until an explicit traction write succeeds in this session."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Remove fault": {
       "localizations": {
@@ -189,7 +207,8 @@
             "value": "Remove fault"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Repeatable failures, visible recovery.": {
       "localizations": {
@@ -199,7 +218,8 @@
             "value": "Repeatable failures, visible recovery."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Report an incompatible firmware profile and reject configuration commands. Restart required.": {
       "localizations": {
@@ -209,7 +229,8 @@
             "value": "Report an incompatible firmware profile and reject configuration commands. Restart required."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Response delay": {
       "localizations": {
@@ -219,7 +240,8 @@
             "value": "Response delay"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Send a one-byte speed payload so the client can reject it.": {
       "localizations": {
@@ -229,7 +251,8 @@
             "value": "Send a one-byte speed payload so the client can reject it."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Silence application responses": {
       "localizations": {
@@ -239,7 +262,8 @@
             "value": "Silence application responses"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Stop Bluetooth before changing this profile, and use a delay between 0 and 30 seconds.": {
       "localizations": {
@@ -249,7 +273,8 @@
             "value": "Stop Bluetooth before changing this profile, and use a delay between 0 and 30 seconds."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Stop Bluetooth to change or remove this profile.": {
       "localizations": {
@@ -259,7 +284,8 @@
             "value": "Stop Bluetooth to change or remove this profile."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Stopping advertisements alone does not drop an existing link. Use the documented physical procedure to test real link loss.": {
       "localizations": {
@@ -269,7 +295,8 @@
             "value": "Stopping advertisements alone does not drop an existing link. Use the documented physical procedure to test real link loss."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Suppress application replies and publish configuration without reads. Restart required; the radio link remains present.": {
       "localizations": {
@@ -279,7 +306,8 @@
             "value": "Suppress application replies and publish configuration without reads. Restart required; the radio link remains present."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Unsupported curve capability": {
       "localizations": {
@@ -289,7 +317,8 @@
             "value": "Unsupported curve capability"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Unsupported firmware": {
       "localizations": {
@@ -299,7 +328,8 @@
             "value": "Unsupported firmware"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery": {
       "localizations": {
@@ -309,7 +339,8 @@
             "value": "Battery"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Status and signals": {
       "localizations": {
@@ -319,7 +350,8 @@
             "value": "Status and signals"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Speed": {
       "localizations": {
@@ -329,7 +361,8 @@
             "value": "Speed"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Active map": {
       "localizations": {
@@ -339,7 +372,8 @@
             "value": "Active map"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Odometer": {
       "localizations": {
@@ -349,7 +383,8 @@
             "value": "Odometer"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Brake": {
       "localizations": {
@@ -359,7 +394,8 @@
             "value": "Brake"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charger": {
       "localizations": {
@@ -369,7 +405,8 @@
             "value": "Charger"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery temperature": {
       "localizations": {
@@ -379,7 +416,8 @@
             "value": "Battery temperature"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Inverter temperature": {
       "localizations": {
@@ -389,7 +427,8 @@
             "value": "Inverter temperature"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Telemetry": {
       "localizations": {
@@ -399,7 +438,8 @@
             "value": "Telemetry"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

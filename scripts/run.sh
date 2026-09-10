@@ -13,5 +13,5 @@ if any(PurePosixPath(line.strip()).name == "FENRVCUEmulator" for line in process
 CHECK_RUNNING
 scripts/generate.sh
 xcodebuild -quiet -project FENRVCUEmulator.xcodeproj -scheme FENRVCUEmulator \
-  -destination 'platform=macOS' -derivedDataPath "$FENR_DERIVED_DATA" build
+  -destination "$FENR_DESTINATION" -derivedDataPath "$FENR_DERIVED_DATA" build
 open "$FENR_DERIVED_DATA/Build/Products/Debug/FENRVCUEmulator.app"

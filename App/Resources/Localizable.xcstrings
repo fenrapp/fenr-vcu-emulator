@@ -2,6 +2,7 @@
   "sourceLanguage": "en",
   "strings": {
     "Activity": {
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -14,6 +15,17 @@
     "Advertising": {
       "extractionState": "manual"
     },
+    "Bluetooth error": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth error"
+          }
+        }
+      }
+    },
     "Bluetooth permission required": {
       "extractionState": "manual"
     },
@@ -23,7 +35,52 @@
     "Charging": {
       "extractionState": "manual"
     },
+    "Configuration": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration"
+          }
+        }
+      }
+    },
+    "Failures": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failures"
+          }
+        }
+      }
+    },
+    "Fault profile active": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fault profile active"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "FENR": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FENR"
+          }
+        }
+      }
+    },
     "FENR VCU Emulator": {
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -33,10 +90,61 @@
         }
       }
     },
+    "macOS controls pairing. Its PIN dialog may differ from the motorcycle.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS controls pairing. Its PIN dialog may differ from the motorcycle."
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "Motorcycle PIN": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motorcycle PIN"
+          }
+        }
+      }
+    },
     "No authenticated session": {
       "extractionState": "manual"
     },
+    "Open activity log": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open activity log"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "Parked": {
+      "extractionState": "manual"
+    },
+    "Partial telemetry": {
+      "extractionState": "manual"
+    },
+    "Ready when you are.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready when you are."
+          }
+        }
+      }
+    },
     "Require Bluetooth link encryption": {
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -46,7 +154,33 @@
         }
       }
     },
+    "Riding": {
+      "extractionState": "manual"
+    },
+    "Session details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session details"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "Simulation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation"
+          }
+        }
+      }
+    },
     "Start": {
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -60,6 +194,7 @@
       "extractionState": "manual"
     },
     "Stop": {
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -72,90 +207,19 @@
     "Stopped": {
       "extractionState": "manual"
     },
+    "Synthetic motorcycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic motorcycle"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
     "V2 authenticated": {
       "extractionState": "manual"
-    },
-    "Waiting for V2 response": {
-      "extractionState": "manual"
-    },
-    "macOS controls pairing. Its PIN dialog may differ from the motorcycle.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS controls pairing. Its PIN dialog may differ from the motorcycle."
-          }
-        }
-      }
-    },
-    "Parked": {
-      "extractionState": "manual"
-    },
-    "Riding": {
-      "extractionState": "manual"
-    },
-    "Partial telemetry": {
-      "extractionState": "manual"
-    },
-    "Configuration": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configuration"
-          }
-        }
-      }
-    },
-    "Failures": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Failures"
-          }
-        }
-      }
-    },
-    "Open activity log": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open activity log"
-          }
-        }
-      }
-    },
-    "Motorcycle PIN": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Motorcycle PIN"
-          }
-        }
-      }
-    },
-    "Session details": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Session details"
-          }
-        }
-      }
-    },
-    "FENR": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FENR"
-          }
-        }
-      }
     },
     "VCU EMULATOR": {
       "localizations": {
@@ -165,57 +229,11 @@
             "value": "VCU EMULATOR"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
-    "Simulation": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Simulation"
-          }
-        }
-      }
-    },
-    "Fault profile active": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fault profile active"
-          }
-        }
-      }
-    },
-    "Synthetic motorcycle": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Synthetic motorcycle"
-          }
-        }
-      }
-    },
-    "Bluetooth error": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bluetooth error"
-          }
-        }
-      }
-    },
-    "Ready when you are.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ready when you are."
-          }
-        }
-      }
+    "Waiting for V2 response": {
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

@@ -3,3 +3,4 @@
 FENR_CACHE_ROOT="$HOME/Library/Caches/FENRVCUEmulator"
 FENR_DERIVED_DATA="$FENR_CACHE_ROOT/DerivedData"
 FENR_SWIFT_SCRATCH="$FENR_CACHE_ROOT/SwiftPM"
+FENR_DESTINATION="platform=macOS,arch=$(uname -m)"

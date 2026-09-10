@@ -9,7 +9,8 @@
             "value": "A shareable timeline of the simulated session."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Activity": {
       "localizations": {
@@ -19,7 +20,8 @@
             "value": "Activity"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "All categories": {
       "localizations": {
@@ -29,7 +31,8 @@
             "value": "All categories"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "All levels": {
       "localizations": {
@@ -39,7 +42,8 @@
             "value": "All levels"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Category": {
       "localizations": {
@@ -49,7 +53,8 @@
             "value": "Category"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Clear": {
       "localizations": {
@@ -59,7 +64,8 @@
             "value": "Clear"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Configuration": {
       "localizations": {
@@ -69,7 +75,8 @@
             "value": "Configuration"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Copied to clipboard.": {
       "localizations": {
@@ -79,7 +86,8 @@
             "value": "Copied to clipboard."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Copy all": {
       "localizations": {
@@ -89,7 +97,8 @@
             "value": "Copy all"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Copy filtered": {
       "localizations": {
@@ -99,7 +108,8 @@
             "value": "Copy filtered"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Copy selected": {
       "localizations": {
@@ -109,7 +119,8 @@
             "value": "Copy selected"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Could not write to the clipboard.": {
       "localizations": {
@@ -119,7 +130,8 @@
             "value": "Could not write to the clipboard."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Detail": {
       "localizations": {
@@ -129,7 +141,8 @@
             "value": "Detail"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Display paused; capture continues.": {
       "localizations": {
@@ -139,7 +152,8 @@
             "value": "Display paused; capture continues."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Error": {
       "localizations": {
@@ -149,7 +163,8 @@
             "value": "Error"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Failure": {
       "localizations": {
@@ -159,7 +174,8 @@
             "value": "Failure"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Info": {
       "localizations": {
@@ -169,7 +185,8 @@
             "value": "Info"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Pause display": {
       "localizations": {
@@ -179,7 +196,8 @@
             "value": "Pause display"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Preset": {
       "localizations": {
@@ -189,7 +207,8 @@
             "value": "Preset"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Search activity": {
       "localizations": {
@@ -199,7 +218,8 @@
             "value": "Search activity"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Session": {
       "localizations": {
@@ -209,7 +229,8 @@
             "value": "Session"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Severity": {
       "localizations": {
@@ -219,7 +240,8 @@
             "value": "Severity"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Telemetry": {
       "localizations": {
@@ -229,7 +251,8 @@
             "value": "Telemetry"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Time": {
       "localizations": {
@@ -239,7 +262,8 @@
             "value": "Time"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Warning": {
       "localizations": {
@@ -249,7 +273,8 @@
             "value": "Warning"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

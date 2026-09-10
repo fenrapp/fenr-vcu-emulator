@@ -8,4 +8,4 @@ python3 scripts/check-architecture.py
 swift test --scratch-path "$FENR_SWIFT_SCRATCH"
 scripts/generate.sh
 xcodebuild -quiet -project FENRVCUEmulator.xcodeproj -scheme FENRVCUEmulator \
-  -destination 'platform=macOS' -derivedDataPath "$FENR_DERIVED_DATA" test
+  -destination "$FENR_DESTINATION" -derivedDataPath "$FENR_DERIVED_DATA" test

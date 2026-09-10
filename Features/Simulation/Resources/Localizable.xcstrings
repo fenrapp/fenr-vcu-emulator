@@ -9,7 +9,8 @@
             "value": "A synthetic motorcycle. Real app behavior."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Active map": {
       "localizations": {
@@ -19,7 +20,8 @@
             "value": "Active map"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery": {
       "localizations": {
@@ -29,7 +31,8 @@
             "value": "Battery"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery health": {
       "localizations": {
@@ -39,7 +42,8 @@
             "value": "Battery health"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery voltage": {
       "localizations": {
@@ -49,7 +53,8 @@
             "value": "Battery voltage"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Battery-only scenario": {
       "localizations": {
@@ -59,7 +64,8 @@
             "value": "Battery-only scenario"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Brake signal": {
       "localizations": {
@@ -69,7 +75,8 @@
             "value": "Brake signal"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charge power limit": {
       "localizations": {
@@ -79,7 +86,8 @@
             "value": "Charge power limit"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charge target": {
       "localizations": {
@@ -89,7 +97,8 @@
             "value": "Charge target"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charger connected": {
       "localizations": {
@@ -99,7 +108,8 @@
             "value": "Charger connected"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charger type (0 standard, 2 fast, 3 backpack)": {
       "localizations": {
@@ -109,7 +119,8 @@
             "value": "Charger type (0 standard, 2 fast, 3 backpack)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charging": {
       "localizations": {
@@ -119,7 +130,8 @@
             "value": "Charging"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Charging enabled": {
       "localizations": {
@@ -129,7 +141,8 @@
             "value": "Charging enabled"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Check engine": {
       "localizations": {
@@ -139,7 +152,8 @@
             "value": "Check engine"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Choose a preset": {
       "localizations": {
@@ -149,7 +163,8 @@
             "value": "Choose a preset"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Delete": {
       "localizations": {
@@ -159,7 +174,8 @@
             "value": "Delete"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Delivered current": {
       "localizations": {
@@ -169,7 +185,8 @@
             "value": "Delivered current"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Delivered power": {
       "localizations": {
@@ -179,7 +196,8 @@
             "value": "Delivered power"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Enter a value within the displayed range.": {
       "localizations": {
@@ -189,7 +207,8 @@
             "value": "Enter a value within the displayed range."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "FENR may wait for live telemetry because the other five startup datasets are intentionally absent.": {
       "localizations": {
@@ -199,7 +218,8 @@
             "value": "FENR may wait for live telemetry because the other five startup datasets are intentionally absent."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Hazard lights": {
       "localizations": {
@@ -209,7 +229,8 @@
             "value": "Hazard lights"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "High beam": {
       "localizations": {
@@ -219,7 +240,8 @@
             "value": "High beam"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "In gear": {
       "localizations": {
@@ -229,7 +251,8 @@
             "value": "In gear"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Interrupt charging": {
       "localizations": {
@@ -239,7 +262,8 @@
             "value": "Interrupt charging"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Left indicator": {
       "localizations": {
@@ -249,7 +273,8 @@
             "value": "Left indicator"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Load": {
       "localizations": {
@@ -259,7 +284,8 @@
             "value": "Load"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Local presets": {
       "localizations": {
@@ -269,7 +295,8 @@
             "value": "Local presets"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Odometer": {
       "localizations": {
@@ -279,7 +306,8 @@
             "value": "Odometer"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Parked": {
       "localizations": {
@@ -289,7 +317,8 @@
             "value": "Parked"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Partial telemetry": {
       "localizations": {
@@ -299,7 +328,8 @@
             "value": "Partial telemetry"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Powered on": {
       "localizations": {
@@ -309,7 +339,8 @@
             "value": "Powered on"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Preset name": {
       "localizations": {
@@ -319,7 +350,8 @@
             "value": "Preset name"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Raw charger status (diagnostic only)": {
       "localizations": {
@@ -329,7 +361,8 @@
             "value": "Raw charger status (diagnostic only)"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Rename": {
       "localizations": {
@@ -339,7 +372,8 @@
             "value": "Rename"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Requested current": {
       "localizations": {
@@ -349,7 +383,8 @@
             "value": "Requested current"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Requested power": {
       "localizations": {
@@ -359,7 +394,8 @@
             "value": "Requested power"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reset all values": {
       "localizations": {
@@ -369,7 +405,8 @@
             "value": "Reset all values"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Reset scenario": {
       "localizations": {
@@ -379,7 +416,8 @@
             "value": "Reset scenario"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Return to Parked": {
       "localizations": {
@@ -389,7 +427,8 @@
             "value": "Return to Parked"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Riding": {
       "localizations": {
@@ -399,7 +438,8 @@
             "value": "Riding"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Right indicator": {
       "localizations": {
@@ -409,7 +449,8 @@
             "value": "Right indicator"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Save new": {
       "localizations": {
@@ -419,7 +460,8 @@
             "value": "Save new"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Save the current scenario, configuration and faults. Loading requires Bluetooth to be stopped.": {
       "localizations": {
@@ -429,7 +471,8 @@
             "value": "Save the current scenario, configuration and faults. Loading requires Bluetooth to be stopped."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Saved preset": {
       "localizations": {
@@ -439,7 +482,8 @@
             "value": "Saved preset"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Signals and state": {
       "localizations": {
@@ -449,7 +493,8 @@
             "value": "Signals and state"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Simulation": {
       "localizations": {
@@ -459,7 +504,8 @@
             "value": "Simulation"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Speed": {
       "localizations": {
@@ -469,7 +515,8 @@
             "value": "Speed"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Stop movement": {
       "localizations": {
@@ -479,7 +526,8 @@
             "value": "Stop movement"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Target cell voltage": {
       "localizations": {
@@ -489,7 +537,8 @@
             "value": "Target cell voltage"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Temperature": {
       "localizations": {
@@ -499,7 +548,8 @@
             "value": "Temperature"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "The change could not be applied. Check the values and stop Bluetooth before loading a preset.": {
       "localizations": {
@@ -509,7 +559,8 @@
             "value": "The change could not be applied. Check the values and stop Bluetooth before loading a preset."
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Scenario": {
       "localizations": {
@@ -519,7 +570,8 @@
             "value": "Scenario"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"
