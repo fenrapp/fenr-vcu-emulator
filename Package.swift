@@ -3,8 +3,10 @@ import PackageDescription
 
 let package = Package(
     name: "FENRVCUEmulator",
+    defaultLocalization: "en",
     platforms: [.macOS(.v14)],
     products: [
+        .library(name: "SimulationFeature", targets: ["SimulationFeature"]),
         .library(name: "DesignSystem", targets: ["DesignSystem"]),
         .library(name: "EmulatorDomain", targets: ["EmulatorDomain"]),
         .library(name: "EmulatorData", targets: ["EmulatorData"]),
@@ -14,6 +16,8 @@ let package = Package(
         .library(name: "BLEPeripheral", targets: ["BLEPeripheral"])
     ],
     targets: [
+        .target(name: "SimulationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Simulation", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
+        .testTarget(name: "SimulationFeatureTests", dependencies: ["SimulationFeature"], path: "Features/Simulation/Tests"),
         .target(name: "DesignSystem", path: "Modules/DesignSystem/Sources"),
         .testTarget(name: "EmulatorDataTests", dependencies: ["EmulatorData"], path: "Modules/EmulatorData/Tests"),
         .target(name: "EmulatorDomain", dependencies: ["VehicleSimulation", "ProtocolEngine"], path: "Modules/EmulatorDomain/Sources"),

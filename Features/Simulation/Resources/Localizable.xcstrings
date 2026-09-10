@@ -1,0 +1,526 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "A synthetic motorcycle. Real app behavior.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A synthetic motorcycle. Real app behavior."
+          }
+        }
+      }
+    },
+    "Active map": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active map"
+          }
+        }
+      }
+    },
+    "Battery": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery"
+          }
+        }
+      }
+    },
+    "Battery health": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery health"
+          }
+        }
+      }
+    },
+    "Battery voltage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery voltage"
+          }
+        }
+      }
+    },
+    "Battery-only scenario": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery-only scenario"
+          }
+        }
+      }
+    },
+    "Brake signal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brake signal"
+          }
+        }
+      }
+    },
+    "Charge power limit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charge power limit"
+          }
+        }
+      }
+    },
+    "Charge target": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charge target"
+          }
+        }
+      }
+    },
+    "Charger connected": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charger connected"
+          }
+        }
+      }
+    },
+    "Charger type (0 standard, 2 fast, 3 backpack)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charger type (0 standard, 2 fast, 3 backpack)"
+          }
+        }
+      }
+    },
+    "Charging": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charging"
+          }
+        }
+      }
+    },
+    "Charging enabled": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charging enabled"
+          }
+        }
+      }
+    },
+    "Check engine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check engine"
+          }
+        }
+      }
+    },
+    "Choose a preset": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a preset"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Delivered current": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delivered current"
+          }
+        }
+      }
+    },
+    "Delivered power": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delivered power"
+          }
+        }
+      }
+    },
+    "Enter a value within the displayed range.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a value within the displayed range."
+          }
+        }
+      }
+    },
+    "FENR may wait for live telemetry because the other five startup datasets are intentionally absent.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FENR may wait for live telemetry because the other five startup datasets are intentionally absent."
+          }
+        }
+      }
+    },
+    "Hazard lights": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazard lights"
+          }
+        }
+      }
+    },
+    "High beam": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High beam"
+          }
+        }
+      }
+    },
+    "In gear": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In gear"
+          }
+        }
+      }
+    },
+    "Interrupt charging": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrupt charging"
+          }
+        }
+      }
+    },
+    "Left indicator": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left indicator"
+          }
+        }
+      }
+    },
+    "Load": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load"
+          }
+        }
+      }
+    },
+    "Local presets": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local presets"
+          }
+        }
+      }
+    },
+    "Odometer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odometer"
+          }
+        }
+      }
+    },
+    "Parked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parked"
+          }
+        }
+      }
+    },
+    "Partial telemetry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partial telemetry"
+          }
+        }
+      }
+    },
+    "Powered on": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Powered on"
+          }
+        }
+      }
+    },
+    "Preset name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preset name"
+          }
+        }
+      }
+    },
+    "Raw charger status (diagnostic only)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw charger status (diagnostic only)"
+          }
+        }
+      }
+    },
+    "Rename": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
+          }
+        }
+      }
+    },
+    "Requested current": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requested current"
+          }
+        }
+      }
+    },
+    "Requested power": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requested power"
+          }
+        }
+      }
+    },
+    "Reset all values": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset all values"
+          }
+        }
+      }
+    },
+    "Reset scenario": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset scenario"
+          }
+        }
+      }
+    },
+    "Return to Parked": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to Parked"
+          }
+        }
+      }
+    },
+    "Riding": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riding"
+          }
+        }
+      }
+    },
+    "Right indicator": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right indicator"
+          }
+        }
+      }
+    },
+    "Save new": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save new"
+          }
+        }
+      }
+    },
+    "Save the current scenario, configuration and faults. Loading requires Bluetooth to be stopped.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save the current scenario, configuration and faults. Loading requires Bluetooth to be stopped."
+          }
+        }
+      }
+    },
+    "Saved preset": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved preset"
+          }
+        }
+      }
+    },
+    "Signals and state": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signals and state"
+          }
+        }
+      }
+    },
+    "Simulation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation"
+          }
+        }
+      }
+    },
+    "Speed": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speed"
+          }
+        }
+      }
+    },
+    "Stop movement": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop movement"
+          }
+        }
+      }
+    },
+    "Target cell voltage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target cell voltage"
+          }
+        }
+      }
+    },
+    "Temperature": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperature"
+          }
+        }
+      }
+    },
+    "The change could not be applied. Check the values and stop Bluetooth before loading a preset.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The change could not be applied. Check the values and stop Bluetooth before loading a preset."
+          }
+        }
+      }
+    },
+    "Scenario": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scenario"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
