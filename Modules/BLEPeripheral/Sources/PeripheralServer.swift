@@ -139,6 +139,7 @@ public final class PeripheralServer: NSObject, PeripheralServing, @preconcurrenc
             event(.session(engine.session.phase))
         } catch {
             peripheral.respond(to: request, withResult: attError(error))
+            event(.transaction(operation: "read rejected", characteristic: id.rawValue, bytes: 0))
         }
     }
 
@@ -157,6 +158,7 @@ public final class PeripheralServer: NSObject, PeripheralServing, @preconcurrenc
             enqueue(notifications)
         } catch {
             peripheral.respond(to: first, withResult: attError(error))
+            event(.transaction(operation: "write rejected", characteristic: id.rawValue, bytes: 0))
         }
     }
 

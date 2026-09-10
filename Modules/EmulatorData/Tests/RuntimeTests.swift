@@ -5,7 +5,7 @@ import VehicleSimulation
 @testable import EmulatorData
 
 @MainActor @Test func concurrentBlockChangesRejectDraftButPreserveSiblings() throws {
-    let (runtime, engine, _, _) = try RuntimeFactory.make()
+    let (runtime, engine, _, _, _) = try RuntimeFactory.make()
     defer { runtime.shutdown() }
     var draft = engine.state.configuration
     draft.charger.power = 2000
@@ -23,7 +23,7 @@ import VehicleSimulation
     #expect(engine.state.configuration.maps[0].torque == 65)
 }
 @MainActor @Test func scenarioResetPreservesConfigurationAndFullResetClearsIt() throws {
-    let (runtime, engine, _, _) = try RuntimeFactory.make()
+    let (runtime, engine, _, _, _) = try RuntimeFactory.make()
     defer { runtime.shutdown() }
     var draft = engine.state.configuration; draft.charger.power = 2200
     try runtime.execute(.configure(.charger, draft: draft, expectedRevision: 0))
@@ -38,7 +38,7 @@ import VehicleSimulation
     #expect(engine.state.configuration == .defaults)
 }
 @MainActor @Test func presetsRequireStoppedServerAndLogIsBounded() throws {
-    let (runtime, _, server, presets) = try RuntimeFactory.make()
+    let (runtime, _, server, presets, _) = try RuntimeFactory.make()
     defer { runtime.shutdown() }
     try runtime.execute(.savePreset("Morning charge"))
     #expect(presets.values.count == 1)
@@ -48,13 +48,13 @@ import VehicleSimulation
     let publications = server.publications
     try runtime.execute(.loadPreset(presets.values[0].id))
     #expect(!runtime.snapshot.running && server.publications == publications)
-    for _ in 0..<1010 { try runtime.execute(.telemetry(.battery(75))) }
+    for index in 0..<1010 { try runtime.execute(.telemetry(.battery(74 + index % 2))) }
     #expect(runtime.snapshot.activity.count == 1000)
     try runtime.execute(.clearActivity)
     #expect(runtime.snapshot.activity.isEmpty)
 }
 @MainActor @Test func rejectedPresetSaveDoesNotUpdateMemory() throws {
-    let (runtime, _, _, store) = try RuntimeFactory.make()
+    let (runtime, _, _, store, _) = try RuntimeFactory.make()
     defer { runtime.shutdown() }
     store.fail = true
     #expect(throws: EmulatorOperationError.self) { try runtime.execute(.savePreset("Test")) }

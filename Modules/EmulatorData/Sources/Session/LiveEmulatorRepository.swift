@@ -90,7 +90,9 @@ import VehicleSimulation
                 engine.resetScenario(snapshot.scenario); server.publishTelemetry()
                 record(.configuration, .info, .local, "Scenario and configuration reset")
             case .telemetry(let edit):
-                engine.setState(try reducer.apply(edit, to: engine.state, scenario: snapshot.scenario))
+                let candidate = try reducer.apply(edit, to: engine.state, scenario: snapshot.scenario)
+                guard candidate != engine.state else { break }
+                engine.setState(candidate)
                 server.publishTelemetry()
                 record(.telemetry, .info, .local, "Control: \(String(describing: edit))")
             case .configure(let block, let draft, let revision):
@@ -100,6 +102,7 @@ import VehicleSimulation
                 var state = engine.state
                 state.configuration = block.replacing(in: state.configuration, with: draft)
                 try validator.validate(state.configuration)
+                guard state.configuration != engine.state.configuration else { break }
                 engine.setState(state); server.publishTelemetry()
                 record(.configuration, .info, .local, "Applied \(String(describing: block))")
             case .fault(let settings):
@@ -182,7 +185,7 @@ import VehicleSimulation
             snapshot.authentication = switch phase { case .idle: .idle; case .challenged: .challenged; case .authenticated: .authenticated }
             record(.session, .info, .bluetooth, "Authentication: \(snapshot.authentication.rawValue)")
         case .transaction(let operation, let characteristic, let bytes):
-            record(characteristic == 0x4005 ? .configuration : .session, .info, .bluetooth,
+            record(characteristic == 0x4005 ? .configuration : .session, operation.contains("rejected") ? .warning : .info, .bluetooth,
                    String(format: "%@ %04X (%d bytes)", operation, characteristic, bytes))
         case .subscribed(let characteristic, let maximum):
             record(.session, .info, .bluetooth, String(format: "Subscribe %04X (max %d bytes)", characteristic, maximum))
