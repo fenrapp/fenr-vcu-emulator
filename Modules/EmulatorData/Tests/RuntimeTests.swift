@@ -60,3 +60,18 @@ import VehicleSimulation
     #expect(throws: EmulatorOperationError.self) { try runtime.execute(.savePreset("Test")) }
     #expect(runtime.snapshot.presets.isEmpty)
 }
+
+@MainActor @Test func presetRenameAndDeleteAreCommittedOnlyAfterStorageSucceeds() throws {
+    let (runtime, _, _, store, _) = try RuntimeFactory.make()
+    defer { runtime.shutdown() }
+    try runtime.execute(.savePreset("Initial"))
+    let id = try #require(runtime.snapshot.presets.first?.id)
+    try runtime.execute(.renamePreset(id, "Renamed"))
+    #expect(store.values.first?.name == "Renamed")
+    store.fail = true
+    #expect(throws: EmulatorOperationError.self) { try runtime.execute(.deletePreset(id)) }
+    #expect(runtime.snapshot.presets.count == 1)
+    store.fail = false
+    try runtime.execute(.deletePreset(id))
+    #expect(runtime.snapshot.presets.isEmpty && store.values.isEmpty)
+}

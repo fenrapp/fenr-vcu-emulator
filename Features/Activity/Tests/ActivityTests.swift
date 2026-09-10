@@ -24,3 +24,17 @@ import VehicleSimulation
     model.clear()
     #expect(repository.snapshot.activity.isEmpty)
 }
+
+@MainActor @Test func pausedDisplayDoesNotPauseCaptureOrCopyAll() async {
+    let repository = ActivityRepository(snapshot: .init(vehicle: VehicleState(), fault: FaultSettings()))
+    let clipboard = ClipboardSpy()
+    let model = ActivityViewModel(useCases: EmulatorUseCases(repository: repository), mapper: ActivityMapper(), clipboard: clipboard, version: "0.2.0")
+    model.pause(true)
+    repository.snapshot.activity = [.init(id: UUID(), date: Date(), category: .session, severity: .info, origin: .system, generation: 2, detail: "New session")]
+    await model.observe()
+    #expect(model.state.rows.isEmpty)
+    model.copyAll()
+    #expect(clipboard.text.contains("New session"))
+    model.pause(false)
+    #expect(model.state.rows.count == 1)
+}

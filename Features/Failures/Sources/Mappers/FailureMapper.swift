@@ -14,8 +14,22 @@ public struct FailureMapper {
                      }, description: detail(fault.scenario), running: snapshot.running,
                      requiresStop: fault.requiresStoppedServer, delay: fault.delay,
                      targets: CharacteristicID.allCases.filter(\.isTelemetry).map {
-                         .init(id: $0.rawValue, title: String(format: "%04X", $0.rawValue), enabled: fault.affected.contains($0))
+                         .init(id: $0.rawValue, title: telemetryTitle($0) + String(format: " (%04X)", $0.rawValue), enabled: fault.affected.contains($0))
                      })
+    }
+    private func telemetryTitle(_ id: CharacteristicID) -> String {
+        switch id {
+        case .battery: failureText("Battery")
+        case .status: failureText("Status and signals")
+        case .speed: failureText("Speed")
+        case .map: failureText("Active map")
+        case .totals: failureText("Odometer")
+        case .brake: failureText("Brake")
+        case .charger: failureText("Charger")
+        case .batteryTemperatures: failureText("Battery temperature")
+        case .inverterTemperatures: failureText("Inverter temperature")
+        default: failureText("Telemetry")
+        }
     }
     private func title(_ fault: FaultScenario) -> String {
         switch fault {
