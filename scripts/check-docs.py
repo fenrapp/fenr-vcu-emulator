@@ -12,9 +12,9 @@ for path in [*root.glob('*.md'), *(root / 'docs').rglob('*.md')]:
         target = target.split('#', 1)[0]
         if not (path.parent / target).exists():
             errors.append(f'{path.relative_to(root)}: missing {target}')
-image = root / 'docs/images/simulation.jpg'
-if not image.is_file() or image.read_bytes()[:3] != b'\xff\xd8\xff':
-    errors.append('README screenshot is missing or not a JPEG')
+image = root / 'docs/images/simulation.png'
+if not image.is_file() or image.read_bytes()[:8] != b'\x89PNG\r\n\x1a\n':
+    errors.append('README screenshot is missing or not a PNG')
 if errors:
     raise SystemExit('\n'.join(errors))
 print('Documentation targets and README screenshot verified.')

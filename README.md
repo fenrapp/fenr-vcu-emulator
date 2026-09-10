@@ -1,6 +1,6 @@
 <div align="center">
   <img src="App/Resources/Assets.xcassets/AppIcon.appiconset/icon-128@2x.png" width="96" alt="FENR icon">
-  <h1>FENR VCU Emulator</h1>
+  <h1>🏍️ FENR VCU Emulator</h1>
   <p>A synthetic motorcycle on your Mac. A real Bluetooth connection to your iPhone.</p>
 
   [![Checks](https://github.com/fenrapp/fenr-vcu-emulator/actions/workflows/check.yml/badge.svg)](https://github.com/fenrapp/fenr-vcu-emulator/actions/workflows/check.yml)
@@ -9,7 +9,7 @@
 
 Test FENR without having the motorcycle nearby. This native macOS app publishes a Bluetooth LE peripheral, authenticates a V2 session and serves editable telemetry and configuration to a physical iPhone.
 
-![FENR VCU Emulator showing the Riding scenario, telemetry controls and session status](docs/images/simulation.jpg)
+![FENR VCU Emulator showing the Parked scenario, telemetry controls and session status](docs/images/simulation.png)
 
 *Actual macOS application, shown with synthetic data and the server stopped.*
 
@@ -51,19 +51,7 @@ The app builds with local ad hoc signing; no Apple developer team or cloud accou
 
 Start with a complete telemetry scenario. **Partial telemetry** intentionally sends battery only and can leave FENR waiting for live telemetry; use its **Return to Parked** action to recover.
 
-## Local state and build output
-
-The app always starts stopped in Parked with default configuration and no fault. Scenario resets preserve configuration; **Reset all values** restores it. Reconnecting preserves the active state. Presets are only loaded when you explicitly choose one, with Bluetooth stopped.
-
-| Data | Location |
-| --- | --- |
-| Xcode products | `~/Library/Caches/FENRVCUEmulator/DerivedData` |
-| SwiftPM products | `~/Library/Caches/FENRVCUEmulator/SwiftPM` |
-| Saved presets | `~/Library/Application Support/FENRVCUEmulator/presets.json` |
-
-`scripts/clean.sh` clears only the emulator's compiler caches. It never removes presets. Generated projects, manual in-checkout builds, logs and private captures are ignored by Git.
-
-## Development
+## 🛠️ Development
 
 ```sh
 scripts/check.sh       # Manifest, documentation, localization, architecture and Swift/Xcode tests
@@ -71,8 +59,6 @@ scripts/generate.sh    # Regenerate the disposable Xcode project
 scripts/run.sh         # Build and open the app
 scripts/clean.sh       # Clear this application's compiler caches
 ```
-
-GitHub Actions runs the same checks on macOS. Hardware Bluetooth tests are separate from CI. The repository builds independently, without the FENR iOS checkout or private packages.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and bug-report guidance.
 
