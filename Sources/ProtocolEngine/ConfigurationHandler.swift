@@ -12,6 +12,7 @@ public struct ConfigurationHandler: Sendable {
         var candidate = configuration
         let response: Data
         switch bytes[1] {
+        case 1: response = try curve(bytes, configuration: &candidate)
         case 0: response = try baseMap(bytes, configuration: &candidate)
         case 4: response = try charger(bytes, configuration: &candidate)
         case 8: response = try traction(bytes, configuration: &candidate)
@@ -96,6 +97,30 @@ public struct ConfigurationHandler: Sendable {
         }
         let value = configuration.lock
         return Data([0, 5, 0, value.isLocked ? 1 : 0, value.type]) + WireBytes.u16(value.timeout)
+    }
+
+    private func curve(_ bytes: [UInt8], configuration: inout VehicleConfiguration) throws -> Data {
+        let reading = bytes[0] == 0
+        guard bytes.count == (reading ? 3 : 68) else { throw ProtocolFailure.invalidLength }
+        let selector = Int(bytes[reading ? 2 : 3])
+        let index = selector - 1
+        guard (1...5).contains(selector), configuration.curves.indices.contains(index) else { throw ProtocolFailure.unsupported }
+        if !reading {
+            guard bytes[2] == 1, Array(bytes[4..<8]) == [255,127,255,127] else { throw ProtocolFailure.unsupported }
+            let power = (0..<15).map { unsigned(bytes, at: 8 + $0 * 2) }
+            let regeneration = (0..<15).map { unsigned(bytes, at: 38 + $0 * 2) }
+            guard power.allSatisfy({ (0...1000).contains($0) }), power.contains(where: { $0 > 0 }),
+                  regeneration.allSatisfy({ (0...1000).contains($0) }) else { throw ProtocolFailure.unsupported }
+            configuration.curves[index].power = power
+            configuration.curves[index].regeneration = regeneration
+            return Data([1, 1, 0])
+        }
+        let value = configuration.curves[index]
+        // Read responses interleave the series; write requests store each complete series consecutively.
+        return zip(value.power, value.regeneration).reduce(into: Data([0,1,0,UInt8(selector)])) {
+            $0.append(WireBytes.u16($1.0))
+            $0.append(WireBytes.u16($1.1))
+        }
     }
 
     private func unsigned(_ bytes: [UInt8], at index: Int) -> Int {

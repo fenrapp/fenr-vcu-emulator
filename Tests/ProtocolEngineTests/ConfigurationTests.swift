@@ -69,3 +69,22 @@ import VehicleSimulation
     #expect(status[10] == 1)
     #expect(status[11] == 30)
 }
+
+@Test func advancedCurvesUseDistinctWriteAndReadLayouts() throws {
+    let handler = ConfigurationHandler()
+    var state = VehicleConfiguration.defaults
+    let curve = StarkPowerCurveConfigurationPayload(curve: 3, power: Array(100...114), regeneration: Array(200...214))
+    let packet = try StarkPowerCurveConfigurationCommand.writePacket(curve)
+    #expect(packet.count == 68)
+    _ = try handler.handle(packet, configuration: &state)
+    let response = try handler.handle(Data([0,1,3]), configuration: &state)
+    #expect(response.count == 64)
+    #expect(response.prefix(12) == Data([0,1,0,3,100,0,200,0,101,0,201,0]))
+    let parsed = try StarkPowerCurveConfigurationCommand.decodeResponse(response, expectedCurve: 3)
+    #expect(parsed.power == curve.power)
+    #expect(parsed.regeneration == curve.regeneration)
+    let before = state
+    _ = try handler.handle(StarkPowerCurveConfigurationCommand.writePacket(parsed), configuration: &state)
+    #expect(state == before)
+    #expect(state.curves[0].power == Array(repeating: 800, count: 15))
+}
