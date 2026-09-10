@@ -15,3 +15,13 @@ import Testing
     #expect(simulator.initialState(for: .parked) == VehicleState())
     #expect(simulator.advance(riding, seconds: -.infinity) == riding)
 }
+
+@Test func resetDiscardsScenarioProgressAndPartialTelemetryIsExplicit() {
+    let simulator = ScenarioSimulator()
+    let partial = simulator.initialState(for: .partialTelemetry)
+    #expect(partial.partialTelemetry)
+    let reset = simulator.initialState(for: .charging)
+    #expect(reset.simulationSeconds == 0)
+    #expect(reset.batteryPercent == 55)
+    #expect(!reset.partialTelemetry)
+}
