@@ -151,9 +151,7 @@ import VehicleSimulation
         snapshot.running = false; snapshot.transport = .stopped; snapshot.authentication = .idle
     }
     private func refresh() {
-        for block in ConfigurationBlock.all where block.changed(from: snapshot.vehicle.configuration, to: engine.state.configuration) {
-            snapshot.revisions[block, default: 0] &+= 1
-        }
+        snapshot.revisions = engine.configurationRevisions
         snapshot.vehicle = engine.state; snapshot.generation = engine.session.generation
     }
     private func publish() {

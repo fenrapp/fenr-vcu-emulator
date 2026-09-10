@@ -5,7 +5,14 @@ import VehicleSimulation
 @MainActor
 public final class EmulatorEngine {
     public let session: SessionEngine
-    public private(set) var state: VehicleState
+    public private(set) var configurationRevisions: [ConfigurationBlock: UInt64] = [:]
+    public private(set) var state: VehicleState {
+        didSet {
+            for block in ConfigurationBlock.all where block.changed(from: oldValue.configuration, to: state.configuration) {
+                configurationRevisions[block, default: 0] &+= 1
+            }
+        }
+    }
     private let encoder: TelemetryEncoder
     private let simulator: ScenarioSimulator
     private let configurationHandler: ConfigurationHandler

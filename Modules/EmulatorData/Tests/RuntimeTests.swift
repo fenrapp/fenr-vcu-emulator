@@ -75,3 +75,24 @@ import VehicleSimulation
     try runtime.execute(.deletePreset(id))
     #expect(runtime.snapshot.presets.isEmpty && store.values.isEmpty)
 }
+
+@MainActor @Test func interveningConfigurationChangesCannotDisappearBetweenSnapshots() throws {
+    let (runtime, engine, _, _, _) = try RuntimeFactory.make()
+    defer { runtime.shutdown() }
+    let original = engine.state
+    var fromPhone = original
+    fromPhone.configuration.charger.power = 1800
+    engine.setState(fromPhone)
+    engine.setState(original)
+    var draft = original.configuration
+    draft.charger.power = 2000
+    #expect(throws: EmulatorOperationError.conflict) {
+        try runtime.execute(.configure(.charger, draft: draft, expectedRevision: 0))
+    }
+    #expect(runtime.snapshot.revisions[.charger] == 2)
+    #expect(engine.state.configuration == original.configuration)
+    draft.maps[0].torque = 65
+    try runtime.execute(.configure(.map(0), draft: draft, expectedRevision: 0))
+    #expect(engine.state.configuration.maps[0].torque == 65)
+    #expect(runtime.snapshot.revisions[.map(0)] == 1)
+}

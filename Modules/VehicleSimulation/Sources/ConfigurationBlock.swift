@@ -1,5 +1,3 @@
-import VehicleSimulation
-
 public enum ConfigurationBlock: Hashable, Sendable {
     case charger, lock, map(Int), traction(Int), curve(Int)
     public static var all: [Self] { [.charger, .lock] + (0..<5).flatMap { [.map($0), .traction($0), .curve($0)] } }
