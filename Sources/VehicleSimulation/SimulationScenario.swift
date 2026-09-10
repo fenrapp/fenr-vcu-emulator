@@ -26,8 +26,9 @@ public struct ScenarioSimulator: Sendable {
         let steps = Int(next.simulationSeconds / 60) - Int(state.simulationSeconds / 60)
         if next.isCharging {
             next.speedKmh = 0
-            next.batteryPercent = min(100, next.batteryPercent + steps)
-            if next.batteryPercent == 100 { next.isCharging = false }
+            let target = next.configuration.charger.target / 10
+            next.batteryPercent = min(max(next.batteryPercent, target), next.batteryPercent + steps)
+            if next.batteryPercent >= target { next.isCharging = false }
         } else if next.speedKmh > 0 {
             next.batteryPercent = max(0, next.batteryPercent - steps)
             if next.batteryPercent == 0 { next.speedKmh = 0 }

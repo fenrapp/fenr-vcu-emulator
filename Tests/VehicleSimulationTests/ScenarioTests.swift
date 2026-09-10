@@ -7,7 +7,9 @@ import Testing
     for _ in 0..<60 { riding = simulator.advance(riding, seconds: 1) }
     #expect(riding.batteryPercent == 74)
     #expect(abs(riding.odometerMeters - (12000 + 35 / 3.6 * 60)) < 0.01)
-    var charging = VehicleState(batteryPercent: 99, isCharging: true)
+    var configuration = VehicleConfiguration.defaults
+    configuration.charger.target = 1000
+    var charging = VehicleState(batteryPercent: 99, isCharging: true, configuration: configuration)
     for _ in 0..<60 { charging = simulator.advance(charging, seconds: 1) }
     #expect(charging.batteryPercent == 100)
     #expect(!charging.isCharging)

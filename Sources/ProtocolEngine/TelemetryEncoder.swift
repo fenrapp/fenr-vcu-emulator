@@ -31,6 +31,12 @@ public struct TelemetryEncoder: Sendable {
             return (0..<8).reduce(into: Data()) { bytes, _ in
                 bytes.append(WireBytes.u16(Int(state.temperatureCelsius * 10)))
             }
+        case .charger:
+            let charger = state.configuration.charger
+            let current = state.isCharging ? min(charger.current, charger.power * 10 / 360) : 0
+            return [current, current, 42000, charger.current, charger.power, charger.target / 10, 360, 360]
+                .reduce(into: Data()) { $0.append(WireBytes.u16($1)) }
+                + Data([0, state.isCharging ? 1 : 0, 0])
         case .versions:
             // Four-byte blocks: patch, minor, major, reserved. PIC 1.10.1; bottom 1.4.1.
             return Data([1, 10, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0])

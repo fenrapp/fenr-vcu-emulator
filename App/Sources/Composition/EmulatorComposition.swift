@@ -11,7 +11,7 @@ enum EmulatorComposition {
         let session = SessionEngine(identity: identity,
                                     verifier: AuthenticationVerifier(builder: StarkAuthenticationPayloadBuilder()),
                                     nonceGenerator: SystemNonceGenerator(), clock: MonotonicSessionClock())
-        let engine = EmulatorEngine(session: session, state: VehicleState(), encoder: TelemetryEncoder(), simulator: ScenarioSimulator())
+        let engine = EmulatorEngine(session: session, state: VehicleState(), encoder: TelemetryEncoder(), simulator: ScenarioSimulator(), configurationHandler: ConfigurationHandler())
         let activity = ActivityStore(state: EmulatorViewState(), mapper: PeripheralEventMapper())
         let server = PeripheralServer(engine: engine, queue: NotificationQueue(capacity: 128),
                                       event: { [activity] in activity.receive($0) })
