@@ -1,16 +1,33 @@
 public struct VehicleConfiguration: Equatable, Sendable {
     public var maps: [BaseMap]
     public var charger: Charger
+    public var traction: [Traction]
+    public var lock: Lock
 
-    public init(maps: [BaseMap], charger: Charger) {
+    public init(maps: [BaseMap], charger: Charger, traction: [Traction], lock: Lock) {
         self.maps = maps
         self.charger = charger
+        self.traction = traction
+        self.lock = lock
     }
 
     public static var defaults: Self {
         Self(maps: (0..<5).map { BaseMap(torque: 50 + $0 * 10, regeneration: 20, curve: $0 + 1) },
              charger: Charger(current: 200, power: 1500, target: 800, minimumCurrent: 10,
-                              startTime: 0, rampTime: 0, standardMaximum: 3300, backpackMaximum: 3300))
+                              startTime: 0, rampTime: 0, standardMaximum: 3300, backpackMaximum: 3300),
+             traction: (0..<5).map { _ in Traction(power: 200, braking: 300) },
+             lock: Lock(isLocked: false, type: 1, timeout: 0))
+    }
+
+    public struct Traction: Equatable, Sendable {
+        public var power: Int
+        public var braking: Int
+    }
+
+    public struct Lock: Equatable, Sendable {
+        public var isLocked: Bool
+        public var type: UInt8
+        public var timeout: Int
     }
 
     public struct BaseMap: Equatable, Sendable {

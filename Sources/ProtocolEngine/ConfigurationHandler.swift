@@ -14,6 +14,8 @@ public struct ConfigurationHandler: Sendable {
         switch bytes[1] {
         case 0: response = try baseMap(bytes, configuration: &candidate)
         case 4: response = try charger(bytes, configuration: &candidate)
+        case 8: response = try traction(bytes, configuration: &candidate)
+        case 5: response = try lock(bytes, configuration: &candidate)
         default: throw ProtocolFailure.unsupported
         }
         configuration = candidate
@@ -59,6 +61,41 @@ public struct ConfigurationHandler: Sendable {
         return [value.current, value.power, value.target, value.minimumCurrent, value.startTime,
                 value.rampTime, value.standardMaximum, value.backpackMaximum]
             .reduce(into: Data([0, 4, 0])) { $0.append(WireBytes.u16($1)) }
+    }
+
+    private func traction(_ bytes: [UInt8], configuration: inout VehicleConfiguration) throws -> Data {
+        let reading = bytes[0] == 0
+        guard bytes.count == (reading ? 3 : 9) else { throw ProtocolFailure.invalidLength }
+        let index = Int(bytes[reading ? 2 : 3])
+        guard configuration.traction.indices.contains(index), (0..<5).contains(index) else {
+            throw ProtocolFailure.unsupported
+        }
+        if !reading {
+            guard bytes[2] == 1, bytes[4] == 15 else { throw ProtocolFailure.unsupported }
+            let power = signed(bytes, at: 5), braking = signed(bytes, at: 7)
+            guard (-1000...1000).contains(power), (-1000...1000).contains(braking) else {
+                throw ProtocolFailure.unsupported
+            }
+            configuration.traction[index].power = power
+            configuration.traction[index].braking = braking
+            return Data([1, 8, 0])
+        }
+        let value = configuration.traction[index]
+        return Data([0, 8, 0, UInt8(index)]) + WireBytes.u16(value.power) + WireBytes.u16(value.braking)
+    }
+
+    private func lock(_ bytes: [UInt8], configuration: inout VehicleConfiguration) throws -> Data {
+        let reading = bytes[0] == 0
+        guard bytes.count == (reading ? 2 : 7) else { throw ProtocolFailure.invalidLength }
+        if !reading {
+            guard bytes[2] == 0x83, bytes[3] <= 1, bytes[4] == 1 else { throw ProtocolFailure.unsupported }
+            configuration.lock.isLocked = bytes[3] == 1
+            configuration.lock.type = bytes[4]
+            configuration.lock.timeout = signed(bytes, at: 5)
+            return Data([1, 5, 0])
+        }
+        let value = configuration.lock
+        return Data([0, 5, 0, value.isLocked ? 1 : 0, value.type]) + WireBytes.u16(value.timeout)
     }
 
     private func unsigned(_ bytes: [UInt8], at index: Int) -> Int {

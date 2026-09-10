@@ -35,3 +35,37 @@ import VehicleSimulation
     #expect(state == valid)
     #expect(throws: ProtocolFailure.self) { try handler.handle(Data([0,9]), configuration: &state) }
 }
+
+@Test func tractionPreservesBothSignedTenthsAndRejectsWrongMode() throws {
+    let handler = ConfigurationHandler()
+    var state = VehicleConfiguration.defaults
+    let result = try handler.handle(Data([1,8,1,2,15,133,255,200,1]), configuration: &state)
+    #expect(result == Data([1,8,0]))
+    let bytes = try handler.handle(Data([0,8,2]), configuration: &state)
+    #expect(bytes == Data([0,8,0,2,133,255,200,1]))
+    let parsed = try StarkTractionControlConfigurationCommand.decodeResponse(bytes, expectedMapIndex: 2)
+    #expect(parsed.powerRaw == -123)
+    #expect(parsed.brakingRaw == 456)
+    let before = state
+    #expect(throws: ProtocolFailure.self) {
+        try handler.handle(Data([1,8,1,2,0,0,0,0,0]), configuration: &state)
+    }
+    #expect(state == before)
+    #expect(state.traction[0].power == 200)
+}
+
+@Test func lockRoundTripPreservesTypeAndTimeoutAndUpdatesTelemetry() throws {
+    let handler = ConfigurationHandler()
+    var state = VehicleConfiguration.defaults
+    _ = try handler.handle(Data([1,5,0x83,1,1,30,0]), configuration: &state)
+    let response = try handler.handle(Data([0,5]), configuration: &state)
+    #expect(response == Data([0,5,0,1,1,30,0]))
+    let parsed = try StarkBikeLockConfigurationCommand.decodeResponse(response)
+    let before = state
+    _ = try handler.handle(StarkBikeLockConfigurationCommand.noOpWritePacket(configuration: parsed), configuration: &state)
+    #expect(state == before)
+    let vehicle = VehicleState(configuration: state)
+    let status = try TelemetryEncoder().encode(vehicle, characteristic: .status)
+    #expect(status[10] == 1)
+    #expect(status[11] == 30)
+}

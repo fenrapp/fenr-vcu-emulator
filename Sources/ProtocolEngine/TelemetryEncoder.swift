@@ -18,6 +18,8 @@ public struct TelemetryEncoder: Sendable {
             var bytes = Data(repeating: 0, count: 18)
             let info: UInt16 = state.isCharging ? 0x13 : (state.speedKmh > 0 ? 0x18 : 0x10)
             bytes.replaceSubrange(8..<10, with: WireBytes.u16(Int(info)))
+            bytes[10] = state.configuration.lock.isLocked ? 1 : 0
+            bytes.replaceSubrange(11..<13, with: WireBytes.u16(state.configuration.lock.timeout))
             return bytes
         case .map:
             return Data([UInt8(state.mapIndex)])
