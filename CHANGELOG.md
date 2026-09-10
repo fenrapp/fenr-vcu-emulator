@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Public README with an actual macOS screenshot, contribution guide and macOS CI.
+- Machine-readable upstream manifest and consolidated license notices.
+- Configuration conflicts detect intervening changes even if values return to their earlier state.
+- Explicit string catalogs stay stable across Xcode builds.
+
 ## 0.2.0 - 2026-09-10
 
 - Native sidebar workspace with persistent session status, cyan design system and macOS 26 glass surfaces.

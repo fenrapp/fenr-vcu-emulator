@@ -2,11 +2,11 @@
 
 ## Automatic checks
 
-Run `scripts/check.sh` from the repository root. It verifies the vendored-source manifest, feature catalogs and architectural imports; runs Swift package tests; generates the Xcode project; and builds/tests the app with ad hoc signing and external caches.
+Run `scripts/check.sh` from the repository root. It verifies the vendored-source manifest, documentation links, README screenshot, feature catalogs and architectural imports; runs Swift package tests; generates the Xcode project; and builds/tests the app with ad hoc signing and external caches.
 
 Coverage includes independent wire fixtures and scales, V2 and replay rejection, offsets and bounded queues, signed configuration records and full curve readback, scenario resets/signals/interrupted charging, stale response cancellation, observer independence, ticker restart/teardown, atomic block conflicts, malformed presets/storage failures, mapper precision, filtering and injected clipboard export. Runtime tests retain test doubles in their own directory.
 
-For an isolated checkout, clone this local repository to a temporary directory and run the same script. No sibling checkout is required. Verify `git status --porcelain` is empty and that `.build/` and `DerivedData/` are absent afterwards. Cache paths are shared by this application, so run builds serially. The generated Xcode project is disposable and ignored.
+For an isolated checkout, clone this repository to a temporary directory and run the same script. No sibling checkout is required. Verify `git status --porcelain` is empty and that `.build/` and `DerivedData/` are absent afterwards. Cache paths are shared by this application, so run builds serially. The generated Xcode project is disposable and ignored.
 
 ## Visual checks
 
@@ -17,3 +17,5 @@ Do not mistake a rebuilt bundle for a relaunched executable: quit the old app be
 ## Physical checks
 
 Use physical-validation.md and record the exact emulator/FENR commits and OS versions. Automatic byte/model tests do not prove iPhone interoperability. Keep captures and identifiers outside Git. No acceptance milestone is created until its complete checklist passes.
+
+GitHub Actions runs `.github/workflows/check.yml` with the same commands on macOS 26 / Xcode 26.6. The hosted image toolchain is documented by [actions/runner-images](https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md). CI does not attempt Bluetooth pairing or physical iPhone acceptance.

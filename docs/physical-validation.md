@@ -1,67 +1,53 @@
-# Physical validation checklist
+# Physical validation
 
-## Evidence status
+## Evidence and limits
 
-On 2026-09-10, before the 0.2.0 redesign, the user confirmed LightBlue discovery, V2 onboarding, recovery from Partial telemetry to Parked, and successful FENR close/reopen with dashboard data. The clean iPhone candidate was commit `3c5582dd8c095c56f06c1482ef2dba85d4b6bf81`, now merged into local main. Emulator corrections included name-only advertising and SOC on 6004. Earlier acceptance remains limited to those observed checks.
+Automatic protocol, lifecycle, storage and presentation tests run locally and in CI. Native UI inspection has covered light/dark appearance, normal/compact windows, numeric editing, configuration Apply, curves, fault controls, preset save/load/rename and clipboard export on macOS 26.6.2.
 
-For 0.2.0, automatic tests and native UI inspection are recorded separately below. All new physical signal, charging, configuration and failure scenarios still require this checklist. No new acceptance milestone is justified by software implementation alone. No motorcycle write-validation claim is made.
+On 2026-09-10, the earlier emulator was confirmed to work with physical iPhone discovery, V2 onboarding, recovery from Partial telemetry to Parked and FENR close/reopen with dashboard data. The client used the authenticated-target identity correction in FENR iOS revision `3c5582dd8c095c56f06c1482ef2dba85d4b6bf81`.
 
-### Native inspection, 2026-09-10
+Those observations do not establish physical acceptance of every redesigned control, configuration record or failure profile. The checklist below remains the acceptance procedure. Runtime testing on macOS 14, a complete VoiceOver pass and complete iPhone configuration/failure coverage are still pending. No motorcycle write-validation claim is made.
 
-The four sections, numeric battery edit, charging configuration draft/Apply, delayed-response selection, activity copy, and preset save/load/rename were exercised in the native app. Copy produced plain text with version, scenario, fault, event origin and generation. Further visual and physical results are appended after final validation.
+## Connection and telemetry
 
-## Connection
-
-1. Run `scripts/run.sh`. Allow macOS Bluetooth access for FENR VCU Emulator.
-2. Leave link encryption enabled and click Start. Expect Advertising. If permission is still pending, resolve that before interpreting a timeout as a protocol failure.
-3. Open FENR on a physical iPhone and add synthetic bike `FENRTEST000000001`, with pairing date `19700101`. Do not modify a real bike's identity.
-4. Follow the OS pairing prompt. The displayed derived motorcycle PIN is synthetic; macOS may use a different bonding flow. Record the actual behavior.
-5. Expect V2 authenticated. Activity should show a 32-byte security read, a 34-byte security write and telemetry subscriptions. Payload bytes and central identifiers are never logged.
-6. Change battery and speed. Verify the iPhone values. Charging zeros speed; increasing speed ends charging. Verify map and temperature where FENR exposes them.
-7. Disconnect from FENR, then reconnect. Expect fresh authentication and no updates from the prior session.
-8. Stop and restart the emulator. Confirm services are published again.
-9. If encrypted bonding prevents progress, stop, disable link encryption and repeat. Record this as application-only V2 testing, not motorcycle bonding validation.
+1. Build and open a fresh emulator. Resolve the macOS Bluetooth permission prompt before diagnosing a protocol timeout. Rebuilding an ad hoc executable can require a new permission decision.
+2. Start in Parked with link encryption enabled. Expect Advertising, then connect FENR using the synthetic identity in README.md.
+3. Follow the OS pairing flow. Expect V2 authenticated, a 32-byte security read, a 34-byte security write and telemetry subscriptions. Do not record authentication payload bytes.
+4. Verify battery, speed, active map and temperatures. Exercise ignition, gear, indicators, hazards, high beam and brake where the client displays them. Brake changes its signal; Stop movement sets speed to zero.
+5. Select Charging. Change requested/delivered current and voltage, then check the calculated values in FENR. Interrupt charging and verify that delivered current stops while charger connection remains.
+6. Close and reopen FENR; verify fresh authentication and live telemetry. Stop and restart the Mac server; verify that services publish again.
+7. Select Partial telemetry, observe the intentional startup wait and use Return to Parked to recover.
+8. If necessary, repeat with application-only V2 after stopping the server and disabling link encryption. Record the security profile separately from encrypted bonding.
 
 ## Configuration
 
-Use normal operation and a current FENR build matching the documented protocol baseline. Observe FENR's preparation/no-op checks and fresh reads in Activity.
+Use normal operation and a compatible FENR build. Observe preparation/no-op checks, command results and fresh reads in Activity.
 
-- Change charge power and target; verify configuration values and subsequent charger telemetry.
-- Change each map's basic power/regeneration. Verify its other fields remain unchanged.
-- Change both traction settings; verify exact tenths values, including signed synthetic fixtures in automated tests.
-- Toggle bike lock and check configuration readback and status telemetry.
-- Read/write each advanced curve with all 15 power and 15 regeneration samples. Confirm the real transport accepts a 68-byte write and a 64-byte response, without invented notification fragmentation.
-- Navigate and manage local presets in FENR; verify these operations do not issue configuration mutation packets. Reads are allowed.
-- Reconnect and confirm state survives. Reset the scenario and confirm configuration remains; Reset all values restores configuration defaults.
+- Change charging power and target; check readback and charger telemetry.
+- Change each base map while retaining its sibling fields.
+- Confirm both signed traction values and bike-lock settings exactly.
+- Read/write all five advanced curve pairs, preserving all 15 power and 15 regeneration samples. Verify a 68-byte write and 64-byte response without invented fragmentation.
+- Open a Mac draft, modify that block from FENR and confirm Reload is required before Apply. Changes in unrelated blocks must survive.
+- Navigate and manage local presets in FENR; verify no configuration mutations occur merely from navigation or preset management.
+- Reconnect and verify current configuration remains. Reset scenario must preserve it; Reset all values must restore defaults.
 
-## Failure profiles
+## Failure and recovery
 
-Stop before changing a profile that requires it, then reconnect FENR. Return to Normal operation between independent cases.
+Return to No fault between independent cases. Stop before changing a profile marked as requiring it.
 
 | Profile | Expected check |
 | --- | --- |
-| Reject V2 authentication | No protected telemetry or configuration access |
-| Delay configuration responses | Replies are held for the selected delay; client timeout/recovery is visible |
-| Never send configuration responses | Configuration is notification/write-only; no application reply arrives |
-| Freeze telemetry values | Changing simulator state does not change sent samples until the profile is cleared |
-| Incomplete speed packet | FENR handles a one-byte speed payload without a crash |
-| Unsupported firmware | Older reported PIC firmware prevents configuration success |
-| Reject advanced curve records | Unsupported record errors remain explicit |
-| Acknowledge without applying | ATT/protocol success alone does not pass fresh-read confirmation |
-| Failed traction reads | No background initialization; explicit user-selected writes may be exercised after the bounded read failure |
+| Authentication rejection | No protected telemetry or configuration access |
+| Delayed responses | Selected delay is applied; client timeout and recovery are visible |
+| Missing responses | Application replies are suppressed; the radio link remains present |
+| Frozen telemetry | Selected datasets retain previous values while simulation continues |
+| Malformed speed | Client rejects the one-byte payload without crashing |
+| Unsupported firmware/capabilities | Configuration cannot report unsupported success |
+| Accepted but unapplied writes | Fresh reads reveal the unchanged values |
+| Failed traction reads | No background initialization; an explicit traction write can restore fresh confirmation |
 
-The failed-traction-read profile rejects type-8 reads until a valid type-8 write arrives in that session, then allows fresh confirmation. Reauthentication or scenario reset reinstates the read failure. Verify that FENR never initializes traction through a background write.
+Reset or change the fault while replies are delayed and verify old replies cannot update the new session. Stopping advertisements is not a disconnection primitive. For actual link loss, manually interrupt Bluetooth and record what the client observes.
 
-## Link loss and records
+## Recording a run
 
-Stopping advertisements is not a disconnect primitive. The app removes services and invalidates its application session on Stop. For a physical link-loss check, manually interrupt Bluetooth and record the observed client behavior; do not claim exact motorcycle radio errors.
-
-Record date, emulator/FENR revisions, Mac/iPhone OS versions, security profile, discovery, V2 outcome, negotiated payload sizes, observed values and blockers. Do not record real device identifiers or raw security bytes. Only successful physical checks justify the corresponding milestone tags.
-
-## Redesign validation record
-
-Environment: macOS 26.6.2, Xcode 26.6 (17F109), Swift 6 language mode, Apple Silicon. The current source passes 48 Swift package tests and the app mapper test, including storage failure rollback, dirty-draft conflicts and paused activity capture. Native inspection covered light/dark appearance, a 1100 x 760 window and an 800-pixel-wide minimum window, keyboard numeric entry, the curve chart, preset save/load/rename, and clipboard export. System appearance was restored after the check. Small icon representations were inspected. Reduce-transparency fallback is implemented and compiled; a full VoiceOver pass and runtime checks on macOS 14 remain pending.
-
-Bluetooth testing of the redesigned executable encountered a pending macOS TCC authorization request after rebuilding the ad hoc binary. The Settings entry alone being enabled did not establish authorization for that executable. Resolve the prompt before continuing the physical checklist. This record does not claim new iPhone acceptance for 0.2.0.
-
-Clean-clone verification at `57f2c0f` passed all 48 package tests, the app test, manifest/localization/architecture checks and Xcode generation/build. Both the clone and working repository remained clean, with no `.build/` or `DerivedData/` directories in either checkout. Finder displayed the integrated icon and version 0.2.0. Executable sources correspond to `ed3f56f`; the subsequent commit only consolidates documentation.
+Record emulator/FENR commits, OS versions, scenario, security/fault profile, reproduction steps, expected/actual values and negotiated payload sizes. Copy a scoped Activity export and use synthetic screenshots. Exclude private identifiers, credentials and raw security payloads. Only create acceptance tags after the corresponding complete checklist passes.

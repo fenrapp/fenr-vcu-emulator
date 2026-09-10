@@ -4,7 +4,7 @@ Only the necessary pure protocol sources from a committed FENR revision are vend
 
 Application authentication (V2) and OS Bluetooth bonding are separate. Neither successful GATT discovery nor subscription proves V2 authentication. macOS controls bonding and the PIN dialog.
 
-Pinned source: fenr-ios-app commit `429e5a05f752ec8ac77cd88cb54e3fac65b6fc34`. Sources are read with git show at this revision, never from the working tree. The vendor manifest records the selected files. Protocol code retains the upstream MIT license.
+Pinned source: fenr-ios-app commit `429e5a05f752ec8ac77cd88cb54e3fac65b6fc34`. Sources are read with git show at this revision, never from the working tree. Modules/ProtocolCore/UpstreamManifest.json records the selected files. Protocol code retains the upstream MIT license.
 
 Advertising intentionally includes only the 17-character synthetic local name. FENR scans without a service UUID filter, and a 128-bit advertised UUID would compete with the name for the limited advertising payload. All supported GATT services remain published and discoverable after connection. The user confirmed full-name discovery in iPhone LightBlue on 2026-09-10.
 
@@ -20,4 +20,4 @@ The emulator now publishes SOC on 6004. An independent startup fixture checks th
 
 Known configuration types remain 0, 1, 4, 5 and 8. Curve writes are 68 bytes and reads 64; there is no invented fragmentation. Core Bluetooth owns the CCCD and encryption negotiation. FENR's firmware/capability/no-op/readback checks remain necessary; emulator support never adds evidence about the actual motorcycle.
 
-The FENR iOS authenticated-target identity correction is on local main at `3c5582dd8c095c56f06c1482ef2dba85d4b6bf81`. It was merged separately before the emulator redesign. This redesign does not modify iOS.
+The FENR iOS authenticated-target identity correction is recorded at `3c5582dd8c095c56f06c1482ef2dba85d4b6bf81`. This emulator is independent of the iOS checkout.
