@@ -5,7 +5,7 @@ Repository: local Git, no remote. All phases 0-4 are integrated in main with the
 | Phase | Software | Automatic validation | Physical acceptance |
 | --- | --- | --- | --- |
 | 0 | Native app, modules, scripts, autonomous build | Passed, including a clean clone | Native bootstrap window launched and inspected; milestone/phase-0 exists |
-| 1 | GATT peripheral, V2, battery/speed/status, session recovery | Passed | Bluetooth authorization and physical iPhone connection pending |
+| 1 | GATT peripheral, V2, battery/speed/status, session recovery | Passed | Bluetooth authorized; synthetic name discovered in iPhone LightBlue; FENR connection pending |
 | 2 | Deterministic scenarios, controls, temperature/map, activity | Passed | Earlier dashboard and Charging selection inspected on Mac; iPhone behavior pending |
 | 3 | Stateful charging/maps/traction/lock/advanced curves | Passed | Earlier configuration inspector inspected on Mac; iPhone writes/readback pending |
 | 4 | Fault profiles, response scheduling, inspection UI | Passed | Failure selector inspected; fault behavior on iPhone pending |
@@ -22,9 +22,15 @@ Final recovery fixes release an abandoned security-to-telemetry handoff after 30
 
 ## Remaining acceptance work
 
-1. Confirm macOS Bluetooth permission and actual advertising on this Mac. The attempted start remained at Starting Bluetooth; no advertising success has been observed.
+1. Discovery was confirmed by the user in iPhone LightBlue on 2026-09-10 after rebuilding and launching the current executable. Bluetooth permission and name advertising now have physical evidence; FENR authentication remains pending.
 2. Complete the physical iPhone checklist, including bonding profile, V2, CCCD, 68-byte writes and 64-byte replies.
 3. Recheck the final window layout at small sizes. An earlier native inspection found clipping; the layout now uses an outer scroll view and an in-content section picker. The computer-use service then failed with a closed native pipe, so the final layout correction has passed compilation but has not been re-inspected live.
 4. Validate the displayed configuration and failure behavior against the iPhone. Record results and create the corresponding acceptance tags only when their checks pass.
 
 Software integration is complete; no iPhone is required to build, run or inspect all implemented phases. Actual BLE interoperability remains unverified. Any macOS limitation discovered in the final physical pass must be resolved before claiming the corresponding acceptance milestone.
+
+## Advertising investigation (2026-09-10)
+
+The earlier running process requested a full synthetic name plus the 128-bit bike-service UUID. The committed implementation already requested the name alone, but that change was not present in the running binary. After a fresh build and launch, the macOS daemon recorded the name-only request and the user confirmed that FENRTEST000000001 appeared in LightBlue on the iPhone. No raw system log or device identifier is versioned.
+
+This establishes discoverability for the rebuilt implementation on this Mac; it does not establish V2 or configuration interoperability. The run script now refuses to reuse an already-running emulator, preventing Launch Services from silently keeping an earlier executable after a rebuild.

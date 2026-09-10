@@ -2,7 +2,7 @@
 
 ## Evidence status
 
-Automatic tests pass. The native bootstrap and earlier dashboard/configuration/failure controls have been inspected. Advertising, V2 over the air, iPhone rendering and physical configuration transactions are not yet verified. No motorcycle write-validation claim is made.
+Automatic tests pass. The native bootstrap and earlier dashboard/configuration/failure controls have been inspected. On 2026-09-10 the user confirmed the synthetic name in iPhone LightBlue after launching a fresh build; macOS logs confirmed the current name-only advertising request. V2 over the air, FENR rendering and physical configuration transactions are not yet verified. No motorcycle write-validation claim is made.
 
 ## Connection
 
