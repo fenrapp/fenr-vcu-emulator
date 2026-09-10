@@ -4,7 +4,7 @@ import ProtocolCore
 import ProtocolEngine
 
 @MainActor
-public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManagerDelegate {
+public final class PeripheralServer: NSObject, PeripheralServing, @preconcurrency CBPeripheralManagerDelegate {
     private let engine: EmulatorEngine
     private let event: @MainActor (PeripheralEvent) -> Void
     private var queue: NotificationQueue
@@ -14,6 +14,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
     private var characteristics: [CharacteristicID: CBMutableCharacteristic] = [:]
     private var centrals: [UUID: CBCentral] = [:]
     private var pendingServices = 0
+    private var services: [UInt16: CBMutableService] = [:]
     private var running = false
     private var security: LinkSecurity = .encrypted
 
@@ -42,6 +43,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
         manager = nil
         pendingServices = 0
         characteristics.removeAll()
+        services.removeAll()
         centrals.removeAll()
         queue.clear()
         engine.session.reset()
@@ -63,6 +65,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
             engine.session.reset()
             centrals.removeAll()
             characteristics.removeAll()
+            services.removeAll()
             pendingServices = 0
             if peripheral.state == .unauthorized { event(.unauthorized) }
             else { event(.bluetoothUnavailable) }
@@ -73,6 +76,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
 
     private func publishServices(_ peripheral: CBPeripheralManager) {
         guard characteristics.isEmpty else { return }
+        peripheral.removeAllServices()
         pendingServices = GATTProfile.services.count
         for serviceID in GATTProfile.services {
             let service = CBMutableService(type: CBUUID(nsuuid: GATTProfile.uuid(serviceID)), primary: true)
@@ -93,12 +97,13 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
                 characteristics[id] = characteristic
                 return characteristic
             }
+            services[serviceID] = service
             peripheral.add(service)
         }
     }
 
     public func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        guard active(peripheral) else { return }
+        guard active(peripheral), services.values.contains(where: { $0 === service }) else { return }
         if let error { fail(error); return }
         pendingServices -= 1
         guard pendingServices == 0 else { return }
@@ -188,7 +193,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
         for value in notifications {
             guard queue.append(value) else {
                 stop()
-                event(.failure("Notification queue capacity exceeded"))
+                event(.failure(.queueFull))
                 return
             }
         }
@@ -205,7 +210,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
             guard next.notBefore <= clock.now() else { return }
             guard next.data.count <= central.maximumUpdateValueLength else {
                 stop()
-                event(.failure("Payload exceeds negotiated notification limit"))
+                event(.failure(.payloadTooLarge))
                 return
             }
             guard manager.updateValue(next.data, for: characteristic, onSubscribedCentrals: [central]) else { return }
@@ -238,7 +243,7 @@ public final class PeripheralServer: NSObject, @preconcurrency CBPeripheralManag
     private func fail(_ error: Error) {
         let nsError = error as NSError
         stop()
-        event(.failure("\(nsError.domain) code \(nsError.code)"))
+        event(.failure(.platform(domain: nsError.domain, code: nsError.code)))
     }
     private func attError(_ error: Error) -> CBATTError.Code {
         switch error as? ProtocolFailure {

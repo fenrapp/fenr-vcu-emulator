@@ -6,9 +6,3 @@ struct EmulatorViewState {
     var running = false
     var activity: [ActivityRow] = []
 }
-
-struct ActivityRow: Identifiable {
-    let id = UUID()
-    let time: String
-    let detail: String
-}

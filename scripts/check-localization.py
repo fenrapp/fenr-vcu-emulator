@@ -8,7 +8,7 @@ keys = json.loads((root / 'App/Resources/Localizable.xcstrings').read_text())['s
 missing = []
 for path in (root / 'App/Sources').rglob('*.swift'):
     text = path.read_text()
-    for pattern in [r'(?:Text|Button|Toggle|GroupBox|Window|Picker)\("([^"\\]*)"',
+    for pattern in [r'(?:Text|Button|Toggle|GroupBox|Window|Picker|DisclosureGroup)\("([^"\\]*)"',
                     r'String\(localized: "([^"\\]*)"', r'TelemetryControl\(title: "([^"\\]*)"']:
         for key in re.findall(pattern, text):
             if key not in keys:

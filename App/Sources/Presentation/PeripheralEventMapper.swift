@@ -26,7 +26,11 @@ struct PeripheralEventMapper {
             detail = state.transport
         case .failure(let message):
             state.transport = String(localized: "Peripheral error")
-            detail = message
+            switch message {
+            case .queueFull: detail = String(localized: "Notification queue capacity exceeded")
+            case .payloadTooLarge: detail = String(localized: "Payload exceeds the negotiated notification limit")
+            case .platform(let domain, let code): detail = String(localized: "Bluetooth error: \(domain) (\(code))")
+            }
         case .session(let phase):
             switch phase {
             case .idle: state.authentication = String(localized: "No authenticated session")

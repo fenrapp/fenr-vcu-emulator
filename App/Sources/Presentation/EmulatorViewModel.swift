@@ -17,13 +17,17 @@ final class EmulatorViewModel {
     private(set) var mapIndex: Int
     private(set) var scenarioID: String = "parked"
     let scenarioChoices: [ScenarioChoice]
+    let faultChoices: [ScenarioChoice]
+    private(set) var faultID: String = "none"
+    private(set) var configurationState: ConfigurationViewState
+    private let configurationMapper: ConfigurationPresentationMapper
     var requireEncryption = true
     private let engine: EmulatorEngine
-    private let server: PeripheralServer
+    private let server: any PeripheralServing
     private let tickWaiter: any TickWaiting
     private var ticker: Task<Void, Never>?
 
-    init(activity: ActivityStore, engine: EmulatorEngine, server: PeripheralServer, tickWaiter: any TickWaiting, scenarioMapper: ScenarioPresentationMapper) {
+    init(activity: ActivityStore, engine: EmulatorEngine, server: any PeripheralServing, tickWaiter: any TickWaiting, scenarioMapper: ScenarioPresentationMapper, faultMapper: FaultPresentationMapper, configurationMapper: ConfigurationPresentationMapper) {
         self.activity = activity
         self.engine = engine
         self.server = server
@@ -36,9 +40,12 @@ final class EmulatorViewModel {
         self.temperatureCelsius = engine.state.temperatureCelsius
         self.mapIndex = engine.state.mapIndex
         self.scenarioChoices = scenarioMapper.choices()
+        self.faultChoices = faultMapper.choices()
+        self.configurationMapper = configurationMapper
+        self.configurationState = configurationMapper.map(engine.state.configuration)
     }
 
-    isolated deinit { ticker?.cancel() }
+    isolated deinit { ticker?.cancel(); server.stop() }
 
     func start() {
         ticker?.cancel()
@@ -74,6 +81,11 @@ final class EmulatorViewModel {
         if charging { speedKmh = 0 }
         updateTelemetry()
     }
+    func selectFault(_ id: String) {
+        guard !activity.state.running, let fault = FaultScenario(rawValue: id) else { return }
+        faultID = id
+        engine.setFault(fault)
+    }
     func selectScenario(_ id: String) {
         guard let scenario = SimulationScenario(rawValue: id) else { return }
         scenarioID = id
@@ -91,6 +103,7 @@ final class EmulatorViewModel {
         updateTelemetry()
     }
     private func refreshPresentation() {
+        configurationState = configurationMapper.map(engine.state.configuration)
         batteryPercent = Double(engine.state.batteryPercent)
         speedKmh = engine.state.speedKmh
         charging = engine.state.isCharging

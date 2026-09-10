@@ -12,6 +12,7 @@ public final class EmulatorEngine {
     private let clock: any SessionClock
     public private(set) var fault: FaultScenario = .none
     private var frozenTelemetry: VehicleState?
+    private var tractionRecoveredGeneration: UInt64?
     public var configurationReadable: Bool { fault != .missingResponses }
     public var responseDelay: TimeInterval { fault == .delayedResponses ? 6 : 0 }
     private var lastConfigurationResponse: (generation: UInt64, data: Data)?
@@ -27,6 +28,7 @@ public final class EmulatorEngine {
 
     public func setFault(_ fault: FaultScenario) {
         self.fault = fault
+        tractionRecoveredGeneration = nil
         frozenTelemetry = fault == .staleTelemetry ? state : nil
         lastConfigurationResponse = nil
     }
@@ -42,6 +44,7 @@ public final class EmulatorEngine {
 
     public func resetScenario(_ scenario: SimulationScenario) {
         state = simulator.initialState(for: scenario)
+        tractionRecoveredGeneration = nil
         lastConfigurationResponse = nil
         if fault == .staleTelemetry { frozenTelemetry = state }
     }
@@ -76,10 +79,12 @@ public final class EmulatorEngine {
         guard fault != .unsupportedFirmware else { throw ProtocolFailure.unsupported }
         let bytes = Array(value)
         if fault == .unsupportedCapabilities && bytes.count > 1 && bytes[1] == 1 { throw ProtocolFailure.unsupported }
-        if fault == .failedTractionRead && bytes.starts(with: [0,8]) { throw ProtocolFailure.unsupported }
+        if fault == .failedTractionRead && bytes.starts(with: [0,8])
+            && tractionRecoveredGeneration != session.generation { throw ProtocolFailure.unsupported }
         var candidate = state.configuration
         let response = try configurationHandler.handle(value, configuration: &candidate)
         if fault != .unappliedWrites { state.configuration = candidate }
+        if fault == .failedTractionRead && bytes.starts(with: [1,8]) { tractionRecoveredGeneration = session.generation }
         if fault == .missingResponses {
             lastConfigurationResponse = nil
             return []
@@ -94,7 +99,7 @@ public final class EmulatorEngine {
     public func subscribe(central: UUID, characteristic: CharacteristicID) throws -> ProtocolNotification? {
         try session.subscribe(central: central, characteristic: characteristic)
         guard characteristic != .security, characteristic != .configuration else { return nil }
-        let bytes = try encoded(characteristic)
+        guard let bytes = try? encoded(characteristic) else { return nil }
         return session.notification(bytes, characteristic: characteristic)
     }
 

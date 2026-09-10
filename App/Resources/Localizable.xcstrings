@@ -96,6 +96,111 @@
     },
     "Map %lld": {
       "extractionState": "manual"
+    },
+    "Dashboard": {
+      "extractionState": "manual"
+    },
+    "Configuration": {
+      "extractionState": "manual"
+    },
+    "Failures": {
+      "extractionState": "manual"
+    },
+    "Change configuration from FENR on your iPhone. Confirmed emulator values appear here.": {
+      "extractionState": "manual"
+    },
+    "Charge power (W)": {
+      "extractionState": "manual"
+    },
+    "Charge target (%)": {
+      "extractionState": "manual"
+    },
+    "Bike lock": {
+      "extractionState": "manual"
+    },
+    "Torque (raw)": {
+      "extractionState": "manual"
+    },
+    "Regeneration (%)": {
+      "extractionState": "manual"
+    },
+    "Power traction (%)": {
+      "extractionState": "manual"
+    },
+    "Braking traction (%)": {
+      "extractionState": "manual"
+    },
+    "Advanced curve samples": {
+      "extractionState": "manual"
+    },
+    "Power": {
+      "extractionState": "manual"
+    },
+    "Regeneration": {
+      "extractionState": "manual"
+    },
+    "Failure scenario": {
+      "extractionState": "manual"
+    },
+    "Behavior": {
+      "extractionState": "manual"
+    },
+    "Stop the peripheral before changing failure scenarios, then reconnect FENR.": {
+      "extractionState": "manual"
+    },
+    "Missing responses uses a notification-only configuration characteristic so the client can exercise its response timeout.": {
+      "extractionState": "manual"
+    },
+    "Radio disconnection is a separate physical test. Stopping advertisements alone does not disconnect an existing link.": {
+      "extractionState": "manual"
+    },
+    "Locked": {
+      "extractionState": "manual"
+    },
+    "Unlocked": {
+      "extractionState": "manual"
+    },
+    "Normal operation": {
+      "extractionState": "manual"
+    },
+    "Reject V2 authentication": {
+      "extractionState": "manual"
+    },
+    "Delay configuration responses by 6 seconds": {
+      "extractionState": "manual"
+    },
+    "Never send configuration responses": {
+      "extractionState": "manual"
+    },
+    "Freeze telemetry values": {
+      "extractionState": "manual"
+    },
+    "Send an incomplete speed packet": {
+      "extractionState": "manual"
+    },
+    "Report unsupported firmware": {
+      "extractionState": "manual"
+    },
+    "Reject advanced curve records": {
+      "extractionState": "manual"
+    },
+    "Acknowledge writes without applying them": {
+      "extractionState": "manual"
+    },
+    "Fail traction reads; accept explicit writes": {
+      "extractionState": "manual"
+    },
+    "Section": {
+      "extractionState": "manual"
+    },
+    "Notification queue capacity exceeded": {
+      "extractionState": "manual"
+    },
+    "Payload exceeds the negotiated notification limit": {
+      "extractionState": "manual"
+    },
+    "Bluetooth error: %@ (%lld)": {
+      "extractionState": "manual"
     }
   },
   "version": "1.0"
