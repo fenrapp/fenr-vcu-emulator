@@ -1,6 +1,6 @@
 import Foundation
 
-public enum FaultScenario: String, CaseIterable, Sendable {
+public enum FaultScenario: String, CaseIterable, Codable, Sendable {
     case none
     case rejectedAuthentication
     case delayedResponses

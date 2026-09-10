@@ -1,6 +1,6 @@
 import Foundation
 
-public enum CharacteristicID: UInt16, CaseIterable, Sendable {
+public enum CharacteristicID: UInt16, CaseIterable, Codable, Sendable {
     case security = 0x1001, status = 0x1002
     case speed = 0x2001, map = 0x2004, totals = 0x2005
     case versions = 0x4001, configuration = 0x4005, brake = 0x4100
@@ -21,7 +21,7 @@ public enum GATTProfile {
     public static let services: [UInt16] = [0x1000, 0x2000, 0x4000, 0x5000, 0x6000, 0x7000]
 }
 
-public enum LinkSecurity: String, CaseIterable, Sendable {
+public enum LinkSecurity: String, CaseIterable, Codable, Sendable {
     case encrypted
     case applicationOnly
 }

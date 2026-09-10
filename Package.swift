@@ -5,12 +5,17 @@ let package = Package(
     name: "FENRVCUEmulator",
     platforms: [.macOS(.v14)],
     products: [
+        .library(name: "EmulatorDomain", targets: ["EmulatorDomain"]),
+        .library(name: "EmulatorData", targets: ["EmulatorData"]),
         .library(name: "ProtocolCore", targets: ["ProtocolCore"]),
         .library(name: "VehicleSimulation", targets: ["VehicleSimulation"]),
         .library(name: "ProtocolEngine", targets: ["ProtocolEngine"]),
         .library(name: "BLEPeripheral", targets: ["BLEPeripheral"])
     ],
     targets: [
+        .testTarget(name: "EmulatorDataTests", dependencies: ["EmulatorData"], path: "Modules/EmulatorData/Tests"),
+        .target(name: "EmulatorDomain", dependencies: ["VehicleSimulation", "ProtocolEngine"], path: "Modules/EmulatorDomain/Sources"),
+        .target(name: "EmulatorData", dependencies: ["EmulatorDomain", "BLEPeripheral"], path: "Modules/EmulatorData/Sources"),
         .target(name: "ProtocolCore", path: "Modules/ProtocolCore/Sources"),
         .target(name: "VehicleSimulation", dependencies: ["ProtocolCore"], path: "Modules/VehicleSimulation/Sources"),
         .target(name: "ProtocolEngine", dependencies: ["ProtocolCore", "VehicleSimulation"], path: "Modules/ProtocolEngine/Sources"),

@@ -11,10 +11,12 @@ public final class EmulatorEngine {
     private let configurationHandler: ConfigurationHandler
     private let clock: any SessionClock
     public private(set) var fault: FaultScenario = .none
+    public private(set) var delaySeconds: TimeInterval = 6
+    public private(set) var affectedTelemetry: Set<CharacteristicID> = Set(CharacteristicID.allCases.filter(\.isTelemetry))
     private var frozenTelemetry: VehicleState?
     private var tractionRecoveredGeneration: UInt64?
     public var configurationReadable: Bool { fault != .missingResponses }
-    public var responseDelay: TimeInterval { fault == .delayedResponses ? 6 : 0 }
+    public var responseDelay: TimeInterval { fault == .delayedResponses ? delaySeconds : 0 }
     private var lastConfigurationResponse: (generation: UInt64, data: Data)?
 
     public init(session: SessionEngine, state: VehicleState, encoder: TelemetryEncoder, simulator: ScenarioSimulator, configurationHandler: ConfigurationHandler, clock: any SessionClock) {
@@ -26,7 +28,9 @@ public final class EmulatorEngine {
         self.clock = clock
     }
 
-    public func setFault(_ fault: FaultScenario) {
+    public func setFault(_ fault: FaultScenario, delay: TimeInterval = 6, affected: Set<CharacteristicID> = Set(CharacteristicID.allCases.filter(\.isTelemetry))) {
+        delaySeconds = delay.isFinite ? min(30, max(0, delay)) : 6
+        affectedTelemetry = affected
         session.invalidatePendingResponses()
         self.fault = fault
         tractionRecoveredGeneration = nil
@@ -39,7 +43,7 @@ public final class EmulatorEngine {
             return Data([0,0,1,0,1,0,1,0,1,4,1,0])
         }
         if characteristic == .speed && fault == .malformedTelemetry { return Data([0]) }
-        return try encoder.encode(characteristic.isTelemetry ? (frozenTelemetry ?? state) : state,
+        return try encoder.encode(affectedTelemetry.contains(characteristic) ? (frozenTelemetry ?? state) : state,
                                   characteristic: characteristic)
     }
 
