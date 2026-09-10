@@ -16,6 +16,7 @@ let package = Package(
         .target(name: "ProtocolEngine", dependencies: ["ProtocolCore", "VehicleSimulation"]),
         .target(name: "BLEPeripheral", dependencies: ["ProtocolCore", "ProtocolEngine"]),
         .testTarget(name: "ProtocolCoreTests", dependencies: ["ProtocolCore"]),
-        .testTarget(name: "ProtocolEngineTests", dependencies: ["ProtocolEngine"])
+        .testTarget(name: "ProtocolEngineTests", dependencies: ["ProtocolEngine"]),
+        .testTarget(name: "BLEPeripheralTests", dependencies: ["BLEPeripheral"])
     ]
 )
