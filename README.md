@@ -8,6 +8,8 @@ A native macOS BLE peripheral for testing FENR on a physical iPhone against a sy
 
 Requirements: macOS 14 or later, Xcode 26.6 (tested toolchain, Swift 6 language mode), Python 3 and XcodeGen 2.42 or later. No cloud service or sibling checkout is required. Runtime compatibility on macOS 14 itself has not been physically tested.
 
+Quit any running copy of the emulator before using this command. The script refuses to reuse an existing process, because rebuilding an app does not update the executable already running.
+
 From the repository directory:
 
 ```sh
