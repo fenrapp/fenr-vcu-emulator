@@ -7,12 +7,17 @@ public final class EmulatorEngine {
     public let session: SessionEngine
     public private(set) var state: VehicleState
     private let encoder: TelemetryEncoder
+    private let simulator: ScenarioSimulator
 
-    public init(session: SessionEngine, state: VehicleState, encoder: TelemetryEncoder) {
+    public init(session: SessionEngine, state: VehicleState, encoder: TelemetryEncoder, simulator: ScenarioSimulator) {
         self.session = session
         self.state = state
         self.encoder = encoder
+        self.simulator = simulator
     }
+
+    public func resetScenario(_ scenario: SimulationScenario) { state = simulator.initialState(for: scenario) }
+    public func advance(seconds: TimeInterval) { state = simulator.advance(state, seconds: seconds) }
 
     public func setState(_ state: VehicleState) { self.state = state }
 

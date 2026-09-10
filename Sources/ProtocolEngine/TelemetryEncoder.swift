@@ -6,6 +6,9 @@ public struct TelemetryEncoder: Sendable {
     public init() {}
 
     public func encode(_ state: VehicleState, characteristic: CharacteristicID) throws -> Data {
+        if state.partialTelemetry && characteristic.isTelemetry && characteristic != .battery {
+            throw ProtocolFailure.unsupported
+        }
         switch characteristic {
         case .battery:
             return WireBytes.u16(state.batteryPercent) + WireBytes.u16(98)
@@ -19,7 +22,15 @@ public struct TelemetryEncoder: Sendable {
         case .map:
             return Data([UInt8(state.mapIndex)])
         case .totals:
-            return WireBytes.u32(state.odometerMeters) + Data(repeating: 0, count: 12)
+            return WireBytes.u32(UInt32(min(Double(UInt32.max), max(0, state.odometerMeters)))) + Data(repeating: 0, count: 12)
+        case .batteryTemperatures:
+            return (0..<12).reduce(into: Data()) { bytes, _ in
+                bytes.append(WireBytes.u16(Int(state.temperatureCelsius * 10)))
+            } + Data([0xFF, 0x0F, 12])
+        case .inverterTemperatures:
+            return (0..<8).reduce(into: Data()) { bytes, _ in
+                bytes.append(WireBytes.u16(Int(state.temperatureCelsius * 10)))
+            }
         case .versions:
             // Four-byte blocks: patch, minor, major, reserved. PIC 1.10.1; bottom 1.4.1.
             return Data([1, 10, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0])
