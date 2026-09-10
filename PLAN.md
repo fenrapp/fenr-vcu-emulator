@@ -25,7 +25,7 @@ Core Bluetooth provides CBPeripheralManager, mutable GATT services/characteristi
 The first prototype must establish these points on the actual Mac and iPhone:
 
 1. Publication of the required proprietary UUIDs succeeds.
-2. The synthetic VIN remains discoverable despite advertising size limits. Start with the local name and only the essential advertised service; services can be discovered after connection without all being advertised.
+2. The synthetic VIN remains discoverable despite advertising size limits. Advertise only the local name to reserve space for the full identity; FENR scans without a service filter, and published services are discovered after connection.
 3. Required read/write/notify properties and the system-managed CCCD satisfy FENR discovery.
 4. The real V2 exchange succeeds and an invalid response is rejected.
 5. Reads, notifications and configuration-sized writes fit the negotiated transport limits.

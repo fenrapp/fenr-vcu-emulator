@@ -107,10 +107,9 @@ public final class PeripheralServer: NSObject, PeripheralServing, @preconcurrenc
         if let error { fail(error); return }
         pendingServices -= 1
         guard pendingServices == 0 else { return }
-        peripheral.startAdvertising([
-            CBAdvertisementDataLocalNameKey: engine.session.identity.vin,
-            CBAdvertisementDataServiceUUIDsKey: [CBUUID(nsuuid: GATTProfile.uuid(0x1000))]
-        ])
+        // FENR scans without a service filter. Reserve advertising space for the full VIN;
+        // the published GATT services are discovered after connection.
+        peripheral.startAdvertising([CBAdvertisementDataLocalNameKey: engine.session.identity.vin])
     }
 
     public func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
