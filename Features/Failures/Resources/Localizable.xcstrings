@@ -1,0 +1,306 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Accept writes without applying": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accept writes without applying"
+          }
+        }
+      }
+    },
+    "Acknowledge supported writes but retain the previous configuration. Fresh reads expose the unchanged values.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledge supported writes but retain the previous configuration. Fresh reads expose the unchanged values."
+          }
+        }
+      }
+    },
+    "Active profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active profile"
+          }
+        }
+      }
+    },
+    "Application silence is not disconnection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Application silence is not disconnection"
+          }
+        }
+      }
+    },
+    "Delay application responses": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delay application responses"
+          }
+        }
+      }
+    },
+    "Fail initial traction read": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fail initial traction read"
+          }
+        }
+      }
+    },
+    "Failures": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failures"
+          }
+        }
+      }
+    },
+    "Fault profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fault profile"
+          }
+        }
+      }
+    },
+    "Freeze telemetry": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freeze telemetry"
+          }
+        }
+      }
+    },
+    "Hold configuration replies for the selected delay. ATT acknowledgments remain separate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold configuration replies for the selected delay. ATT acknowledgments remain separate."
+          }
+        }
+      }
+    },
+    "Keep the selected datasets at their current values while the simulated state continues changing.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the selected datasets at their current values while the simulated state continues changing."
+          }
+        }
+      }
+    },
+    "Malformed speed payload": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malformed speed payload"
+          }
+        }
+      }
+    },
+    "No fault": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No fault"
+          }
+        }
+      }
+    },
+    "Normal protocol behavior. All supported commands are available.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal protocol behavior. All supported commands are available."
+          }
+        }
+      }
+    },
+    "Reject advanced curve operations. Restart required.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reject advanced curve operations. Restart required."
+          }
+        }
+      }
+    },
+    "Reject authentication": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reject authentication"
+          }
+        }
+      }
+    },
+    "Reject the V2 response. Stop Bluetooth before changing this profile.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reject the V2 response. Stop Bluetooth before changing this profile."
+          }
+        }
+      }
+    },
+    "Reject traction reads until an explicit traction write succeeds in this session.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reject traction reads until an explicit traction write succeeds in this session."
+          }
+        }
+      }
+    },
+    "Remove fault": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove fault"
+          }
+        }
+      }
+    },
+    "Repeatable failures, visible recovery.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repeatable failures, visible recovery."
+          }
+        }
+      }
+    },
+    "Report an incompatible firmware profile and reject configuration commands. Restart required.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an incompatible firmware profile and reject configuration commands. Restart required."
+          }
+        }
+      }
+    },
+    "Response delay": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Response delay"
+          }
+        }
+      }
+    },
+    "Send a one-byte speed payload so the client can reject it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send a one-byte speed payload so the client can reject it."
+          }
+        }
+      }
+    },
+    "Silence application responses": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silence application responses"
+          }
+        }
+      }
+    },
+    "Stop Bluetooth before changing this profile, and use a delay between 0 and 30 seconds.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Bluetooth before changing this profile, and use a delay between 0 and 30 seconds."
+          }
+        }
+      }
+    },
+    "Stop Bluetooth to change or remove this profile.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Bluetooth to change or remove this profile."
+          }
+        }
+      }
+    },
+    "Stopping advertisements alone does not drop an existing link. Use the documented physical procedure to test real link loss.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping advertisements alone does not drop an existing link. Use the documented physical procedure to test real link loss."
+          }
+        }
+      }
+    },
+    "Suppress application replies and publish configuration without reads. Restart required; the radio link remains present.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suppress application replies and publish configuration without reads. Restart required; the radio link remains present."
+          }
+        }
+      }
+    },
+    "Unsupported curve capability": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsupported curve capability"
+          }
+        }
+      }
+    },
+    "Unsupported firmware": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsupported firmware"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
