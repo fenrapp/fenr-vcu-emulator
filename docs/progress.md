@@ -47,4 +47,6 @@ FENR main at `0010f600` discarded onboarding completion when the Mac GAP name di
 
 The user confirmed successful onboarding with this candidate. Closing and reopening FENR while the emulator used Partial telemetry left it on Waiting for live telemetry. The physical diagnostic run showed valid battery SOC values but no status, speed, map, totals or brake samples. Returning to Parked and resetting the scenario restored all six datasets; the user confirmed that the dashboard appeared. This is the partial scenario's intentional behavior, not a failed V2 exchange.
 
-These observations establish startup and recovery for this Mac/iPhone combination, not complete configuration, failure-profile or motorcycle validation. No additional milestone tag is justified yet. No private device identifiers or raw diagnostic captures are included here.
+After installing the clean candidate binary without temporary startup instrumentation, the user confirmed that battery and speed appeared on both the initial opening and a close/reopen cycle with Parked selected.
+
+These observations establish startup, app relaunch and recovery for this Mac/iPhone combination, not complete configuration, failure-profile or motorcycle validation. No additional milestone tag is justified yet. No private device identifiers or raw diagnostic captures are included here.
