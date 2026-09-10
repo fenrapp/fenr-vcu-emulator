@@ -13,5 +13,5 @@ struct EmulatorApp: App {
 
 private enum WindowLayout {
     static let width: CGFloat = 800
-    static let height: CGFloat = 660
+    static let height: CGFloat = 780
 }

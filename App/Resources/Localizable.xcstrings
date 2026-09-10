@@ -72,6 +72,30 @@
     },
     "macOS controls pairing. Its PIN dialog may differ from the motorcycle.": {
       "extractionState": "manual"
+    },
+    "Scenario": {
+      "extractionState": "manual"
+    },
+    "Reset scenario": {
+      "extractionState": "manual"
+    },
+    "Active map": {
+      "extractionState": "manual"
+    },
+    "Temperature": {
+      "extractionState": "manual"
+    },
+    "Parked": {
+      "extractionState": "manual"
+    },
+    "Riding": {
+      "extractionState": "manual"
+    },
+    "Partial telemetry": {
+      "extractionState": "manual"
+    },
+    "Map %lld": {
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

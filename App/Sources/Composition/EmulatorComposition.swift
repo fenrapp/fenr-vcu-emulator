@@ -15,6 +15,6 @@ enum EmulatorComposition {
         let activity = ActivityStore(state: EmulatorViewState(), mapper: PeripheralEventMapper())
         let server = PeripheralServer(engine: engine, queue: NotificationQueue(capacity: 128),
                                       event: { [activity] in activity.receive($0) })
-        return EmulatorViewModel(activity: activity, engine: engine, server: server, tickWaiter: SystemTickWaiter())
+        return EmulatorViewModel(activity: activity, engine: engine, server: server, tickWaiter: SystemTickWaiter(), scenarioMapper: ScenarioPresentationMapper())
     }
 }
