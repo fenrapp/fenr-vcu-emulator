@@ -5,7 +5,7 @@ public enum CharacteristicID: UInt16, CaseIterable, Sendable {
     case speed = 0x2001, map = 0x2004, totals = 0x2005
     case versions = 0x4001, configuration = 0x4005, brake = 0x4100
     case charger = 0x5001
-    case battery = 0x6003, batteryTemperatures = 0x6005
+    case battery = 0x6004, batteryTemperatures = 0x6005
     case inverterTemperatures = 0x7003
 
     public var uuid: UUID { GATTProfile.uuid(rawValue) }
