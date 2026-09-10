@@ -11,13 +11,13 @@ let package = Package(
         .library(name: "BLEPeripheral", targets: ["BLEPeripheral"])
     ],
     targets: [
-        .target(name: "ProtocolCore"),
-        .target(name: "VehicleSimulation", dependencies: ["ProtocolCore"]),
-        .target(name: "ProtocolEngine", dependencies: ["ProtocolCore", "VehicleSimulation"]),
-        .target(name: "BLEPeripheral", dependencies: ["ProtocolCore", "ProtocolEngine"]),
-        .testTarget(name: "ProtocolCoreTests", dependencies: ["ProtocolCore"]),
-        .testTarget(name: "ProtocolEngineTests", dependencies: ["ProtocolEngine"]),
-        .testTarget(name: "BLEPeripheralTests", dependencies: ["BLEPeripheral"]),
-        .testTarget(name: "VehicleSimulationTests", dependencies: ["VehicleSimulation"])
+        .target(name: "ProtocolCore", path: "Modules/ProtocolCore/Sources"),
+        .target(name: "VehicleSimulation", dependencies: ["ProtocolCore"], path: "Modules/VehicleSimulation/Sources"),
+        .target(name: "ProtocolEngine", dependencies: ["ProtocolCore", "VehicleSimulation"], path: "Modules/ProtocolEngine/Sources"),
+        .target(name: "BLEPeripheral", dependencies: ["ProtocolCore", "ProtocolEngine"], path: "Modules/BLEPeripheral/Sources"),
+        .testTarget(name: "ProtocolCoreTests", dependencies: ["ProtocolCore"], path: "Modules/ProtocolCore/Tests"),
+        .testTarget(name: "ProtocolEngineTests", dependencies: ["ProtocolEngine"], path: "Modules/ProtocolEngine/Tests"),
+        .testTarget(name: "BLEPeripheralTests", dependencies: ["BLEPeripheral"], path: "Modules/BLEPeripheral/Tests"),
+        .testTarget(name: "VehicleSimulationTests", dependencies: ["VehicleSimulation"], path: "Modules/VehicleSimulation/Tests")
     ]
 )
