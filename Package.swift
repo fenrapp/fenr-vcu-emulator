@@ -6,6 +6,7 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.macOS(.v14)],
     products: [
+        .library(name: "ActivityFeature", targets: ["ActivityFeature"]),
         .library(name: "FailuresFeature", targets: ["FailuresFeature"]),
         .library(name: "ConfigurationFeature", targets: ["ConfigurationFeature"]),
         .library(name: "SimulationFeature", targets: ["SimulationFeature"]),
@@ -18,6 +19,8 @@ let package = Package(
         .library(name: "BLEPeripheral", targets: ["BLEPeripheral"])
     ],
     targets: [
+        .target(name: "ActivityFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Activity", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
+        .testTarget(name: "ActivityFeatureTests", dependencies: ["ActivityFeature"], path: "Features/Activity/Tests"),
         .target(name: "FailuresFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Failures", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .testTarget(name: "FailuresFeatureTests", dependencies: ["FailuresFeature"], path: "Features/Failures/Tests"),
         .target(name: "ConfigurationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Configuration", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
