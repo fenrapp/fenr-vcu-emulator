@@ -1,0 +1,55 @@
+name: FENRVCUEmulator
+options:
+  minimumXcodeGenVersion: 2.42.0
+  deploymentTarget:
+    macOS: "14.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO
+    GENERATE_INFOPLIST_FILE: YES
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+packages:
+  EmulatorModules:
+    path: .
+targets:
+  FENRVCUEmulator:
+    type: application
+    platform: macOS
+    sources:
+      - App/Sources
+      - App/Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.fenr.vcu-emulator
+        PRODUCT_NAME: FENRVCUEmulator
+        INFOPLIST_KEY_CFBundleDisplayName: FENR VCU Emulator
+        INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: Connect a physical iPhone to the simulated motorcycle over Bluetooth.
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.developer-tools
+    dependencies:
+      - package: EmulatorModules
+        product: BLEPeripheral
+      - package: EmulatorModules
+        product: ProtocolEngine
+      - package: EmulatorModules
+        product: VehicleSimulation
+  EmulatorAppTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: Tests/AppTests
+    dependencies:
+      - target: FENRVCUEmulator
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.fenr.vcu-emulator.tests
+schemes:
+  FENRVCUEmulator:
+    build:
+      targets:
+        FENRVCUEmulator: all
+        EmulatorAppTests: [test]
+    test:
+      targets: [EmulatorAppTests]

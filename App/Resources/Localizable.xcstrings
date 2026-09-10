@@ -1,0 +1,8 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "FENR VCU Emulator": { "extractionState": "manual" },
+    "Local Bluetooth development environment": { "extractionState": "manual" }
+  },
+  "version": "1.0"
+}
