@@ -87,9 +87,9 @@ import ProtocolCore
     var changed = engine.state
     changed.batteryPercent = 20
     engine.setState(changed)
-    #expect(try engine.read(central: client, characteristic: .battery, offset: 0) == Data([75,0,98,0]))
+    #expect(try engine.read(central: client, characteristic: .battery, offset: 0) == Data([75,0,98,0,16,14]))
     engine.setFault(.none)
-    #expect(try engine.read(central: client, characteristic: .battery, offset: 0) == Data([20,0,98,0]))
+    #expect(try engine.read(central: client, characteristic: .battery, offset: 0) == Data([20,0,98,0,16,14]))
     engine.setFault(.malformedTelemetry)
     #expect(try engine.read(central: client, characteristic: .speed, offset: 0) == Data([0]))
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum SimulationScenario: String, CaseIterable, Sendable {
+public enum SimulationScenario: String, CaseIterable, Codable, Sendable {
     case parked, riding, charging, partialTelemetry
 }
 
@@ -28,7 +28,7 @@ public struct ScenarioSimulator: Sendable {
             next.speedKmh = 0
             let target = next.configuration.charger.target / 10
             next.batteryPercent = min(max(next.batteryPercent, target), next.batteryPercent + steps)
-            if next.batteryPercent >= target { next.isCharging = false }
+            if next.batteryPercent >= target { next.isCharging = false; next.charging.reportedCurrent = 0 }
         } else if next.speedKmh > 0 {
             next.batteryPercent = max(0, next.batteryPercent - steps)
             if next.batteryPercent == 0 { next.speedKmh = 0 }

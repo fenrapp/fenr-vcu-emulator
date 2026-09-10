@@ -18,10 +18,10 @@ import ProtocolCore
     #expect(Set(engine.telemetry().map { $0.characteristic.uuid }) == Set(DashboardStartupFixture.requiredSamples.map(\.uuid)))
     #expect(CharacteristicID.battery.uuid != DashboardStartupFixture.batteryParametersUUID)
     let battery = try #require(engine.telemetry().first { $0.characteristic.rawValue == 0x6004 })
-    #expect(battery.data == Data([75, 0, 98, 0]))
+    #expect(battery.data == Data([75, 0, 98, 0, 16, 14]))
     var changed = engine.state
     changed.batteryPercent = 42
     engine.setState(changed)
     let update = try #require(engine.telemetry().first { $0.characteristic.rawValue == 0x6004 })
-    #expect(update.data == Data([42, 0, 98, 0]))
+    #expect(update.data == Data([42, 0, 98, 0, 16, 14]))
 }

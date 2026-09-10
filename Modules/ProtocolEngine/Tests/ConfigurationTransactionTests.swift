@@ -25,7 +25,7 @@ import ProtocolCore
     _ = try engine.write(central: client, characteristic: .configuration, offset: 0, value: Data([0,4]))
     #expect(engine.state.configuration.charger.power == 2000)
     engine.resetScenario(.parked)
-    #expect(engine.state.configuration.charger.power == 1500)
+    #expect(engine.state.configuration.charger.power == 2000)
     #expect(throws: ProtocolFailure.unsupported) { try engine.read(central: client, characteristic: .configuration, offset: 0) }
 }
 

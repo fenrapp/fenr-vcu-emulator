@@ -1,6 +1,6 @@
 import Foundation
 
-public struct VehicleState: Equatable, Sendable {
+public struct VehicleState: Equatable, Codable, Sendable {
     public var batteryPercent: Int
     public var speedKmh: Double
     public var mapIndex: Int
@@ -9,6 +9,10 @@ public struct VehicleState: Equatable, Sendable {
     public var temperatureCelsius: Double
     public var partialTelemetry: Bool
     public var configuration: VehicleConfiguration
+    public var batteryHealthPercent: Int = 98
+    public var dcBusVolts: Double = 360
+    public var signals: RidingSignals = RidingSignals()
+    public var charging: ChargingTelemetry = ChargingTelemetry()
     public var simulationSeconds: Double = 0
 
     public init(batteryPercent: Int = 75, speedKmh: Double = 0, mapIndex: Int = 0,
@@ -17,6 +21,8 @@ public struct VehicleState: Equatable, Sendable {
         self.speedKmh = min(150, max(0, speedKmh.isFinite ? speedKmh : 0))
         self.mapIndex = min(4, max(0, mapIndex))
         self.isCharging = isCharging
+        self.charging.connected = isCharging
+        self.signals.inGear = speedKmh > 0
         self.odometerMeters = odometerMeters
         self.temperatureCelsius = temperatureCelsius
         self.partialTelemetry = partialTelemetry

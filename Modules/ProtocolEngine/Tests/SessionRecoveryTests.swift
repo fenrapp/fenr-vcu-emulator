@@ -36,7 +36,7 @@ import VehicleSimulation
 @Test func telemetryWireValuesHaveIndependentExpectedBytes() throws {
     let encoder = TelemetryEncoder()
     let state = VehicleState(batteryPercent: 73, speedKmh: 25.5)
-    #expect(try encoder.encode(state, characteristic: .battery) == Data([73, 0, 98, 0]))
+    #expect(try encoder.encode(state, characteristic: .battery) == Data([73, 0, 98, 0, 16, 14]))
     #expect(try encoder.encode(state, characteristic: .speed) == Data([255, 0, 0, 0]))
     let status = try encoder.encode(state, characteristic: .status)
     #expect(status.count == 18)

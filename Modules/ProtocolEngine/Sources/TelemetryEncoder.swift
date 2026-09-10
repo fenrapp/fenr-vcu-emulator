@@ -11,12 +11,17 @@ public struct TelemetryEncoder: Sendable {
         }
         switch characteristic {
         case .battery:
-            return WireBytes.u16(state.batteryPercent) + WireBytes.u16(98)
+            return WireBytes.u16(state.batteryPercent) + WireBytes.u16(state.batteryHealthPercent) + WireBytes.u16(Int((state.dcBusVolts * 10).rounded()))
         case .speed:
             return WireBytes.u16(Int((state.speedKmh * 10).rounded())) + WireBytes.u16(0)
         case .status:
             var bytes = Data(repeating: 0, count: 18)
-            let info: UInt16 = state.isCharging ? 0x13 : (state.speedKmh > 0 ? 0x18 : 0x10)
+            let signals = state.signals
+            let info = (state.isCharging ? 1 : 0) | (state.charging.connected ? 2 : 0)
+                | (signals.inGear ? 8 : 0) | (signals.poweredOn ? 16 : 0)
+            let indicators = (signals.highBeam ? 2 : 0) | (signals.rightIndicator ? 4 : 0)
+                | (signals.leftIndicator ? 8 : 0) | (signals.checkEngine ? 4096 : 0)
+            bytes.replaceSubrange(2..<4, with: WireBytes.u16(indicators))
             bytes.replaceSubrange(8..<10, with: WireBytes.u16(Int(info)))
             bytes[10] = state.configuration.lock.isLocked ? 1 : 0
             bytes.replaceSubrange(11..<13, with: WireBytes.u16(state.configuration.lock.timeout))
@@ -35,12 +40,14 @@ public struct TelemetryEncoder: Sendable {
             }
         case .charger:
             let charger = state.configuration.charger
-            let current = state.isCharging ? min(charger.current, charger.power * 10 / 360) : 0
-            return [current, current, 42000, charger.current, charger.power, charger.target / 10, 360, 360]
+            let telemetry = state.charging
+            let requested = Int((telemetry.requestedCurrent * 10).rounded())
+            let current = state.isCharging ? Int((telemetry.reportedCurrent * 10).rounded()) : 0
+            return [requested, current, Int((telemetry.targetCellVolts * 10000).rounded()), charger.current, charger.power, charger.target / 10, Int(state.dcBusVolts), Int(state.dcBusVolts)]
                 .reduce(into: Data()) { $0.append(WireBytes.u16($1)) }
-                + Data([0, state.isCharging ? 1 : 0, 0])
+                + Data([UInt8(telemetry.status), state.isCharging ? 1 : 0, UInt8(telemetry.type)])
         case .brake:
-            return Data([5, 15, 0, 0, 0, 0, 0, 0])
+            return Data([5, 15, state.signals.brake ? 1 : 0, 0, 0, 0, 0, 0])
         case .versions:
             // Four-byte blocks: patch, minor, major, reserved. PIC 1.10.1; bottom 1.4.1.
             return Data([1, 10, 1, 0, 1, 0, 1, 0, 1, 4, 1, 0])

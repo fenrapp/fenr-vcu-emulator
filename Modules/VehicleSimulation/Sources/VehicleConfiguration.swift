@@ -1,4 +1,4 @@
-public struct VehicleConfiguration: Equatable, Sendable {
+public struct VehicleConfiguration: Equatable, Codable, Sendable {
     public var maps: [BaseMap]
     public var charger: Charger
     public var traction: [Traction]
@@ -22,29 +22,29 @@ public struct VehicleConfiguration: Equatable, Sendable {
              curves: (0..<5).map { _ in Curve(power: Array(repeating: 800, count: 15), regeneration: Array(repeating: 200, count: 15)) })
     }
 
-    public struct Curve: Equatable, Sendable {
+    public struct Curve: Equatable, Codable, Sendable {
         public var power: [Int]
         public var regeneration: [Int]
     }
 
-    public struct Traction: Equatable, Sendable {
+    public struct Traction: Equatable, Codable, Sendable {
         public var power: Int
         public var braking: Int
     }
 
-    public struct Lock: Equatable, Sendable {
+    public struct Lock: Equatable, Codable, Sendable {
         public var isLocked: Bool
         public var type: UInt8
         public var timeout: Int
     }
 
-    public struct BaseMap: Equatable, Sendable {
+    public struct BaseMap: Equatable, Codable, Sendable {
         public var torque: Int
         public var regeneration: Int
         public var curve: Int
     }
 
-    public struct Charger: Equatable, Sendable {
+    public struct Charger: Equatable, Codable, Sendable {
         public var current: Int
         public var power: Int
         public var target: Int
