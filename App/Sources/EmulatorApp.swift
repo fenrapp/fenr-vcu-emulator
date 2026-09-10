@@ -1,17 +1,13 @@
 import SwiftUI
 
-@main
-struct EmulatorApp: App {
-    @State private var model = EmulatorComposition.make()
+@main struct EmulatorApp: App {
+    @State private var model: WorkspaceViewModel
+    init() { _model = State(initialValue: EmulatorComposition.make()) }
     var body: some Scene {
-        Window("FENR VCU Emulator", id: "emulator") {
-            ContentView(model: model)
+        Window("FENR VCU Emulator", id: "workspace") {
+            WorkspaceView(model: model)
         }
-        .defaultSize(width: WindowLayout.width, height: WindowLayout.height)
+        .defaultSize(width: WorkspaceLayout.initialWidth, height: WorkspaceLayout.initialHeight)
+        .windowResizability(.contentMinSize)
     }
-}
-
-private enum WindowLayout {
-    static let width: CGFloat = 800
-    static let height: CGFloat = 780
 }

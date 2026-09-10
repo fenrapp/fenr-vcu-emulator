@@ -26,10 +26,24 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.fenr.vcu-emulator
         PRODUCT_NAME: FENRVCUEmulator
+        MARKETING_VERSION: 0.2.0
+        CURRENT_PROJECT_VERSION: 2
         INFOPLIST_KEY_CFBundleDisplayName: FENR VCU Emulator
         INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: Connect a physical iPhone to the simulated motorcycle over Bluetooth.
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.developer-tools
     dependencies:
+      - package: EmulatorModules
+        product: DesignSystem
+      - package: EmulatorModules
+        product: ActivityFeature
+      - package: EmulatorModules
+        product: FailuresFeature
+      - package: EmulatorModules
+        product: ConfigurationFeature
+      - package: EmulatorModules
+        product: SimulationFeature
+      - package: EmulatorModules
+        product: EmulatorData
       - package: EmulatorModules
         product: BLEPeripheral
       - package: EmulatorModules

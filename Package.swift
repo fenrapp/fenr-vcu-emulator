@@ -19,14 +19,14 @@ let package = Package(
         .library(name: "BLEPeripheral", targets: ["BLEPeripheral"])
     ],
     targets: [
-        .target(name: "ActivityFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Activity", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .testTarget(name: "ActivityFeatureTests", dependencies: ["ActivityFeature"], path: "Features/Activity/Tests"),
-        .target(name: "FailuresFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Failures", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .testTarget(name: "FailuresFeatureTests", dependencies: ["FailuresFeature"], path: "Features/Failures/Tests"),
-        .target(name: "ConfigurationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Configuration", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .testTarget(name: "ConfigurationFeatureTests", dependencies: ["ConfigurationFeature"], path: "Features/Configuration/Tests"),
-        .target(name: "SimulationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Simulation", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .testTarget(name: "SimulationFeatureTests", dependencies: ["SimulationFeature"], path: "Features/Simulation/Tests"),
+        .target(name: "ActivityFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Activity", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
+        .target(name: "FailuresFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Failures", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
+        .target(name: "ConfigurationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Configuration", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
+        .target(name: "SimulationFeature", dependencies: ["EmulatorDomain", "DesignSystem"], path: "Features/Simulation", exclude: ["Tests"], sources: ["Sources"], resources: [.process("Resources")]),
         .target(name: "DesignSystem", path: "Modules/DesignSystem/Sources"),
         .testTarget(name: "EmulatorDataTests", dependencies: ["EmulatorData"], path: "Modules/EmulatorData/Tests"),
         .target(name: "EmulatorDomain", dependencies: ["VehicleSimulation", "ProtocolEngine"], path: "Modules/EmulatorDomain/Sources"),

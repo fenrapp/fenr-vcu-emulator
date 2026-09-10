@@ -2,18 +2,16 @@
   "sourceLanguage": "en",
   "strings": {
     "Activity": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity"
+          }
+        }
+      }
     },
     "Advertising": {
-      "extractionState": "manual"
-    },
-    "Authentication": {
-      "extractionState": "manual"
-    },
-    "Battery": {
-      "extractionState": "manual"
-    },
-    "Bluetooth": {
       "extractionState": "manual"
     },
     "Bluetooth permission required": {
@@ -25,43 +23,53 @@
     "Charging": {
       "extractionState": "manual"
     },
-    "Derived motorcycle PIN": {
-      "extractionState": "manual"
-    },
     "FENR VCU Emulator": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FENR VCU Emulator"
+          }
+        }
+      }
     },
     "No authenticated session": {
       "extractionState": "manual"
     },
-    "Peripheral error": {
-      "extractionState": "manual"
-    },
-    "Physical iPhone. Synthetic motorcycle.": {
-      "extractionState": "manual"
-    },
     "Require Bluetooth link encryption": {
-      "extractionState": "manual"
-    },
-    "Speed": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Require Bluetooth link encryption"
+          }
+        }
+      }
     },
     "Start": {
-      "extractionState": "manual"
-    },
-    "Start the peripheral to see activity.": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
     },
     "Starting Bluetooth": {
       "extractionState": "manual"
     },
     "Stop": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
     },
     "Stopped": {
-      "extractionState": "manual"
-    },
-    "Synthetic bike": {
       "extractionState": "manual"
     },
     "V2 authenticated": {
@@ -71,19 +79,14 @@
       "extractionState": "manual"
     },
     "macOS controls pairing. Its PIN dialog may differ from the motorcycle.": {
-      "extractionState": "manual"
-    },
-    "Scenario": {
-      "extractionState": "manual"
-    },
-    "Reset scenario": {
-      "extractionState": "manual"
-    },
-    "Active map": {
-      "extractionState": "manual"
-    },
-    "Temperature": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS controls pairing. Its PIN dialog may differ from the motorcycle."
+          }
+        }
+      }
     },
     "Parked": {
       "extractionState": "manual"
@@ -94,113 +97,125 @@
     "Partial telemetry": {
       "extractionState": "manual"
     },
-    "Map %lld": {
-      "extractionState": "manual"
-    },
-    "Dashboard": {
-      "extractionState": "manual"
-    },
     "Configuration": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration"
+          }
+        }
+      }
     },
     "Failures": {
-      "extractionState": "manual"
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failures"
+          }
+        }
+      }
     },
-    "Change configuration from FENR on your iPhone. Confirmed emulator values appear here.": {
-      "extractionState": "manual"
+    "Open activity log": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open activity log"
+          }
+        }
+      }
     },
-    "Charge power (W)": {
-      "extractionState": "manual"
+    "Motorcycle PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motorcycle PIN"
+          }
+        }
+      }
     },
-    "Charge target (%)": {
-      "extractionState": "manual"
+    "Session details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session details"
+          }
+        }
+      }
     },
-    "Bike lock": {
-      "extractionState": "manual"
+    "FENR": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FENR"
+          }
+        }
+      }
     },
-    "Torque (raw)": {
-      "extractionState": "manual"
+    "VCU EMULATOR": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VCU EMULATOR"
+          }
+        }
+      }
     },
-    "Regeneration (%)": {
-      "extractionState": "manual"
+    "Simulation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation"
+          }
+        }
+      }
     },
-    "Power traction (%)": {
-      "extractionState": "manual"
+    "Fault profile active": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fault profile active"
+          }
+        }
+      }
     },
-    "Braking traction (%)": {
-      "extractionState": "manual"
+    "Synthetic motorcycle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synthetic motorcycle"
+          }
+        }
+      }
     },
-    "Advanced curve samples": {
-      "extractionState": "manual"
+    "Bluetooth error": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth error"
+          }
+        }
+      }
     },
-    "Power": {
-      "extractionState": "manual"
-    },
-    "Regeneration": {
-      "extractionState": "manual"
-    },
-    "Failure scenario": {
-      "extractionState": "manual"
-    },
-    "Behavior": {
-      "extractionState": "manual"
-    },
-    "Stop the peripheral before changing failure scenarios, then reconnect FENR.": {
-      "extractionState": "manual"
-    },
-    "Missing responses uses a notification-only configuration characteristic so the client can exercise its response timeout.": {
-      "extractionState": "manual"
-    },
-    "Radio disconnection is a separate physical test. Stopping advertisements alone does not disconnect an existing link.": {
-      "extractionState": "manual"
-    },
-    "Locked": {
-      "extractionState": "manual"
-    },
-    "Unlocked": {
-      "extractionState": "manual"
-    },
-    "Normal operation": {
-      "extractionState": "manual"
-    },
-    "Reject V2 authentication": {
-      "extractionState": "manual"
-    },
-    "Delay configuration responses by 6 seconds": {
-      "extractionState": "manual"
-    },
-    "Never send configuration responses": {
-      "extractionState": "manual"
-    },
-    "Freeze telemetry values": {
-      "extractionState": "manual"
-    },
-    "Send an incomplete speed packet": {
-      "extractionState": "manual"
-    },
-    "Report unsupported firmware": {
-      "extractionState": "manual"
-    },
-    "Reject advanced curve records": {
-      "extractionState": "manual"
-    },
-    "Acknowledge writes without applying them": {
-      "extractionState": "manual"
-    },
-    "Fail traction reads; accept explicit writes": {
-      "extractionState": "manual"
-    },
-    "Section": {
-      "extractionState": "manual"
-    },
-    "Notification queue capacity exceeded": {
-      "extractionState": "manual"
-    },
-    "Payload exceeds the negotiated notification limit": {
-      "extractionState": "manual"
-    },
-    "Bluetooth error: %@ (%lld)": {
-      "extractionState": "manual"
+    "Ready when you are.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready when you are."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
