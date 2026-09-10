@@ -1,8 +1,78 @@
 {
   "sourceLanguage": "en",
   "strings": {
-    "FENR VCU Emulator": { "extractionState": "manual" },
-    "Local Bluetooth development environment": { "extractionState": "manual" }
+    "Activity": {
+      "extractionState": "manual"
+    },
+    "Advertising": {
+      "extractionState": "manual"
+    },
+    "Authentication": {
+      "extractionState": "manual"
+    },
+    "Battery": {
+      "extractionState": "manual"
+    },
+    "Bluetooth": {
+      "extractionState": "manual"
+    },
+    "Bluetooth permission required": {
+      "extractionState": "manual"
+    },
+    "Bluetooth unavailable": {
+      "extractionState": "manual"
+    },
+    "Charging": {
+      "extractionState": "manual"
+    },
+    "Derived motorcycle PIN": {
+      "extractionState": "manual"
+    },
+    "FENR VCU Emulator": {
+      "extractionState": "manual"
+    },
+    "No authenticated session": {
+      "extractionState": "manual"
+    },
+    "Peripheral error": {
+      "extractionState": "manual"
+    },
+    "Physical iPhone. Synthetic motorcycle.": {
+      "extractionState": "manual"
+    },
+    "Require Bluetooth link encryption": {
+      "extractionState": "manual"
+    },
+    "Speed": {
+      "extractionState": "manual"
+    },
+    "Start": {
+      "extractionState": "manual"
+    },
+    "Start the peripheral to see activity.": {
+      "extractionState": "manual"
+    },
+    "Starting Bluetooth": {
+      "extractionState": "manual"
+    },
+    "Stop": {
+      "extractionState": "manual"
+    },
+    "Stopped": {
+      "extractionState": "manual"
+    },
+    "Synthetic bike": {
+      "extractionState": "manual"
+    },
+    "V2 authenticated": {
+      "extractionState": "manual"
+    },
+    "Waiting for V2 response": {
+      "extractionState": "manual"
+    },
+    "macOS controls pairing. Its PIN dialog may differ from the motorcycle.": {
+      "extractionState": "manual"
+    }
   },
   "version": "1.0"
 }

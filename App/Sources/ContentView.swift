@@ -1,22 +1,47 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Bindable var model: EmulatorViewModel
+
     var body: some View {
-        VStack(spacing: Layout.spacing) {
-            Image(systemName: "antenna.radiowaves.left.and.right")
-                .font(.largeTitle)
-            Text("FENR VCU Emulator").font(.title)
-            Text("Local Bluetooth development environment")
-                .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: Layout.spacing) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("FENR VCU Emulator").font(.title.bold())
+                    Text("Physical iPhone. Synthetic motorcycle.").foregroundStyle(.secondary)
+                }
+                Spacer()
+                if model.activity.state.running {
+                    Button("Stop", action: { model.stop() })
+                } else {
+                    Button("Start", action: { model.start() }).buttonStyle(.borderedProminent)
+                }
+            }
+            SessionPanel(identity: model.identityName, pin: model.pairingPIN,
+                         transport: model.activity.state.transport, authentication: model.activity.state.authentication)
+            Toggle("Require Bluetooth link encryption", isOn: $model.requireEncryption)
+                .disabled(model.activity.state.running)
+            Text("macOS controls pairing. Its PIN dialog may differ from the motorcycle.")
+                .font(.caption).foregroundStyle(.secondary)
+            HStack(spacing: Layout.controlGap) {
+                TelemetryControl(title: "Battery", value: model.batteryPercent, range: 0...100,
+                                 suffix: "%", commit: { model.setBattery($0) })
+                TelemetryControl(title: "Speed", value: model.speedKmh, range: 0...150,
+                                 suffix: " km/h", commit: { model.setSpeed($0) })
+            }
+            Toggle("Charging", isOn: Binding(get: { model.charging }, set: { model.setCharging($0) }))
+            ActivityPanel(rows: model.activity.state.activity)
         }
         .padding(Layout.padding)
         .frame(minWidth: Layout.width, minHeight: Layout.height)
+        .onDisappear { model.stop() }
     }
 
     private enum Layout {
         static let spacing: CGFloat = 16
-        static let padding: CGFloat = 32
-        static let width: CGFloat = 640
-        static let height: CGFloat = 480
+        static let controlGap: CGFloat = 28
+        static let padding: CGFloat = 24
+        static let width: CGFloat = 700
+        static let height: CGFloat = 560
     }
 }
