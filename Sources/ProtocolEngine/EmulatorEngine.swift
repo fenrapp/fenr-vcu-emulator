@@ -27,6 +27,7 @@ public final class EmulatorEngine {
     }
 
     public func setFault(_ fault: FaultScenario) {
+        session.invalidatePendingResponses()
         self.fault = fault
         tractionRecoveredGeneration = nil
         frozenTelemetry = fault == .staleTelemetry ? state : nil
@@ -43,6 +44,7 @@ public final class EmulatorEngine {
     }
 
     public func resetScenario(_ scenario: SimulationScenario) {
+        session.invalidatePendingResponses()
         state = simulator.initialState(for: scenario)
         tractionRecoveredGeneration = nil
         lastConfigurationResponse = nil

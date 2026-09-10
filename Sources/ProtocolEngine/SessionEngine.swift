@@ -24,6 +24,11 @@ public final class SessionEngine {
         self.clock = clock
     }
 
+    /// Invalidates scheduled output while preserving authentication and CCCD subscriptions.
+    public func invalidatePendingResponses() {
+        generation &+= 1
+    }
+
     public func reset() {
         generation &+= 1
         central = nil

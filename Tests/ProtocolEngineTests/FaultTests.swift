@@ -93,3 +93,38 @@ import ProtocolCore
     engine.setFault(.malformedTelemetry)
     #expect(try engine.read(central: client, characteristic: .speed, offset: 0) == Data([0]))
 }
+
+@MainActor @Test func scenarioResetInvalidatesDelayedWorkAndKeepsAuthenticatedSubscriptions() throws {
+    let clock = ManualSessionClock()
+    let engine = try EngineTestFactory.make(clock: clock)
+    let client = UUID()
+    engine.setFault(.delayedResponses)
+    try EngineTestFactory.authenticate(engine, central: client)
+    _ = try engine.subscribe(central: client, characteristic: .configuration)
+    _ = try engine.subscribe(central: client, characteristic: .battery)
+    let old = try engine.write(central: client, characteristic: .configuration, offset: 0, value: Data([0,4]))
+    let oldGeneration = engine.session.generation
+    engine.resetScenario(.charging)
+    clock.advance(6)
+    #expect(engine.session.generation != oldGeneration)
+    #expect(old.allSatisfy { !engine.session.isCurrent($0) })
+    #expect(throws: ProtocolFailure.unsupported) { try engine.read(central: client, characteristic: .configuration, offset: 0) }
+    try engine.session.authorize(client)
+    let fresh = try engine.write(central: client, characteristic: .configuration, offset: 0, value: Data([0,4]))
+    #expect(!fresh.isEmpty)
+    #expect(fresh.allSatisfy { engine.session.isCurrent($0) })
+    #expect(!engine.telemetry().isEmpty)
+}
+
+@MainActor @Test func changingFaultDiscardsRepliesScheduledByPreviousProfile() throws {
+    let engine = try EngineTestFactory.make()
+    let client = UUID()
+    engine.setFault(.delayedResponses)
+    try EngineTestFactory.authenticate(engine, central: client)
+    _ = try engine.subscribe(central: client, characteristic: .configuration)
+    let old = try engine.write(central: client, characteristic: .configuration, offset: 0, value: Data([0,4]))
+    engine.setFault(.none)
+    #expect(old.allSatisfy { !engine.session.isCurrent($0) })
+    #expect(throws: ProtocolFailure.unsupported) { try engine.read(central: client, characteristic: .configuration, offset: 0) }
+    try engine.session.authorize(client)
+}
